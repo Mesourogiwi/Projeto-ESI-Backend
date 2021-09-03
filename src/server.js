@@ -1,5 +1,5 @@
 const express = require('express');
-const routes = require('./routes');
+// const routes = require('./routes');
 
 require('dotenv').config();
 
@@ -9,6 +9,6 @@ require('./database');
 
 const app = express();
 
-app.use(routes);
+// app.use(routes);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
