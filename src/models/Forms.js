@@ -3,6 +3,11 @@ const { Model, DataTypes } = require('sequelize');
 class Forms extends Model {
   static init(connection) {
     super.init({
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
       qual_curso: DataTypes.INTEGER,    
       nome_orientador: DataTypes.STRING,
       link_curriculo: DataTypes.STRING,

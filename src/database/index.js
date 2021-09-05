@@ -7,6 +7,12 @@ const Forms = require('../models/Forms');
 
 const connection = new Sequelize(dbConfig);
 
+connection.authenticate().then(() => {
+  console.log('conectado')  
+}).catch((err) => {
+    console.log(err)
+})
+
 
 Students.init(connection);
 Teacher.init(connection);
