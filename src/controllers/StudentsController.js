@@ -17,15 +17,14 @@ module.exports = {
 
         const {name, email, password, usp_number, lattes} = req.body;
 
-        const result = await Retornos.create({name, email, password, usp_number, lattes});
+        const result = await Students.create({name, email, password, usp_number, lattes});
 
         return res.json(result);
     },
     async edit(req, res) {
-        const {id} = req.params;
-        const{name, email, password, usp_number, lattes} = req.body;
+        const{id, name, email, password, usp_number, lattes} = req.body;
         
-        const result = await Retornos.findByPk(id);
+        const result = await Students.findByPk(id);
 
         const afterUpdate = await result.update({name, email, password, usp_number, lattes});
 
@@ -36,7 +35,7 @@ module.exports = {
     async delete(req, res) {
         const {id} = req.params;
 
-        const result = await Retornos.findByPk(id);
+        const result = await Students.findByPk(id);
 
         await result.destroy(result);
 

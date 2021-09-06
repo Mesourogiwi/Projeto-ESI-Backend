@@ -36,6 +36,9 @@ class Forms extends Model {
       sequelize: connection,
     })
   }
+  static associate(models) {
+    this.belongsTo(models.Avaliations, { foreignKey: 'avaliationId', as: 'avaliations' });
+  }
 }
 
 module.exports = Forms;

@@ -22,12 +22,11 @@ module.exports = {
         return res.json(result);
     },
     async edit(req, res) {
-        const {id} = req.params;
-        const{name, email, password, usp_number, lattes} = req.body;
+        const{id, name, email, password} = req.body;
         
         const result = await Teacher.findByPk(id);
 
-        const afterUpdate = await result.update({name, email, password, usp_number, lattes});
+        const afterUpdate = await result.update({name, email, password});
 
         return res.json(afterUpdate);
 

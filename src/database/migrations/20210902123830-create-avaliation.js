@@ -2,39 +2,43 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('students', {
+    return queryInterface.createTable('avaliations', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
-      avaliation_id: {
+      forms_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'avaliations', key: 'id' },
+        references: { model: 'forms', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      name: {
+      status: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
+      comentario_CCP: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      password: {
+      avaliacao_CCP: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      usp_number: {
+      comentario_orientador: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      lattes: {
+      avaliacao_orientador: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      is_reavaliation: {
+        type: Sequelize.BOOLEAN,
         allowNull: false,
       },
       created_at: {
@@ -49,6 +53,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('students');
+    return queryInterface.dropTable('avaliations');
   },
 };

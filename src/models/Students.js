@@ -17,6 +17,10 @@ class Students extends Model {
       sequelize: connection,
     })
   }
+  static associate(models) {
+    this.belongsTo(models.Teacher, { foreignKey: 'teacherId', as: 'teacher' });
+    this.hasMany(models.Avaliations, { foreignKey: 'studentId', as: 'avaliations' });
+  }
 }
 
 module.exports = Students;
