@@ -8,19 +8,19 @@ class Avaliations extends Model {
         primaryKey: true,
         autoIncrement: true
       },
+      forms_id: DataTypes.INTEGER,
       status: DataTypes.STRING,
-      comentario_CCP: DataTypes.STRING,
-      avaliacao_CCP: DataTypes.STRING, 
+      comentario_ccp: DataTypes.STRING,
+      avaliacao_ccp: DataTypes.STRING, 
       comentario_orientador: DataTypes.STRING,
       avaliacao_orientador: DataTypes.STRING,
-      is_reavaliation: DataTypes.BOOLEAN,
+      is_reavaliation: DataTypes.TINYINT,
     }, {
       sequelize: connection,
     })
   }
   static associate(models) {
-    this.belongsTo(models.Students, { foreignKey: 'studentId', as: 'students' });
-    this.hasMany(models.Forms, { foreignKey: 'avaliationId', as: 'forms' });
+    this.belongsTo(models.Forms, { foreignKey: 'forms_id'});
   }
 }
 

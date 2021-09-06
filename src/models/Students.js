@@ -8,6 +8,7 @@ class Students extends Model {
         primaryKey: true,
         autoIncrement: true
       },
+      avaliation_id: DataTypes.INTEGER,
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
@@ -18,8 +19,7 @@ class Students extends Model {
     })
   }
   static associate(models) {
-    this.belongsTo(models.Teacher, { foreignKey: 'teacherId', as: 'teacher' });
-    this.hasMany(models.Avaliations, { foreignKey: 'studentId', as: 'avaliations' });
+    this.belongsTo(models.Avaliations, { foreignKey: 'avaliation_id'});
   }
 }
 

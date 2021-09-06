@@ -11,14 +11,14 @@ class Teacher extends Model {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
+      student_id: DataTypes.INTEGER
     }, {
       sequelize: connection,
       tableName: 'teacher'
     })
   }
   static associate(models) {
-    this.belongsTo(models.Ccp, { foreignKey: 'ccpId', as: 'ccp' });
-    this.hasMany(models.Students, { foreignKey: 'studentId', as: 'teacher' });
+    this.belongsTo(models.Students, { foreignKey: 'student_id'});
   }
 }
 

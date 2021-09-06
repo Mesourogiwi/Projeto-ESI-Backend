@@ -22,4 +22,9 @@ Forms.init(connection);
 Avaliations.init(connection);
 Ccp.init(connection);
 
+Teacher.associate(connection.models);
+Avaliations.associate(connection.models);
+Students.associate(connection.models);
+Ccp.associate(connection.models);
+
 module.exports = connection;

@@ -20,12 +20,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      comentario_CCP: {
+      comentario_ccp: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      avaliacao_CCP: {
+      avaliacao_ccp: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -38,7 +38,7 @@ module.exports = {
         allowNull: false,
       },
       is_reavaliation: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.TINYINT,
         allowNull: false,
       },
       created_at: {
