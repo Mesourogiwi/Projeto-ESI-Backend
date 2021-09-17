@@ -1,11 +1,11 @@
 const Students = require('../models/Students')
-const Avaliation = require('../models/Avaliations')
+const Evaluation = require('../models/Evaluation')
 
 module.exports = {
     async index(req, res) {
         const result = await Students.findAll({
             include: [
-                {model: Avaliation}
+                {model: Evaluation}
             ]
         })
 
@@ -16,7 +16,7 @@ module.exports = {
 
         const result = await Students.findByPk(id, {
             include: [
-                {model: Avaliation}
+                {model: Evaluation}
             ]
         });
 

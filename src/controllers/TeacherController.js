@@ -23,7 +23,7 @@ module.exports = {
         return res.json(result);
     },
     async store(req, res) {
-        console.log(req.body);
+        
         const {name, email, password, student_id} = req.body;
 
         const result = await Teacher.create({name, email, password, student_id});

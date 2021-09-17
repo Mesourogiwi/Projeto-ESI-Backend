@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Avaliations extends Model {
+class Evaluation extends Model {
   static init(connection) {
     super.init({
       id: {
@@ -24,4 +24,4 @@ class Avaliations extends Model {
   }
 }
 
-module.exports = Avaliations;
+module.exports = Evaluation;
