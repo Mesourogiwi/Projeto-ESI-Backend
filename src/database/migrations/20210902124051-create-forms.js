@@ -45,7 +45,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      optativas_apravadas: {
+      optativas_aprovadas: {
         type: Sequelize.STRING,
         allowNull: false,
       },

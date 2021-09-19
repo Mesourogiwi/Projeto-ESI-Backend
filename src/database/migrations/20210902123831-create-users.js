@@ -9,6 +9,7 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
+      //alterar tabelas para as relações corretas
       avaliation_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
