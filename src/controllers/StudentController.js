@@ -6,7 +6,7 @@ const authConfig = require('../config/auth');
 const { CCP_LEVEL, ADMIN_LEVEL, TEACHER_LEVEL, STUDENT_LEVEL } = require('../config/token');
 
 const generateToken = (params = {}) => jwt.sign(params, authConfig.secret, {
-    expiresIn: 300, //cinco minutos
+    expiresIn: 86400, //um dia
   });
 
 module.exports = {
