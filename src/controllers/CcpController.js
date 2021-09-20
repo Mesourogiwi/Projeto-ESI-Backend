@@ -1,14 +1,16 @@
 const CCP = require('../models/Ccp');
-const Teacher = require('../models/Teacher');
 
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
+const bcrypt = require('bcrypt');
 
 const { CCP_LEVEL, ADMIN_LEVEL } = require('../config/token');
 
 const generateToken = (params = {}) => jwt.sign(params, authConfig.secret, {
     expiresIn: 86400, //um dia
   });
+
+const generateHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 
 module.exports = {
     async index (req, res) {
@@ -51,13 +53,12 @@ module.exports = {
             return res.status(400).json({ msg: 'Input is invalid' });
 
             try {
-                
-                const result = await CCP.create({name, email, password});
-
+                const hash = generateHash(password);
+                const result = await CCP.create({name, email, password: hash});
+                result.password = undefined;
                 return res.status(200).json({ result, token: generateToken({ id: result.id, level: 'ccp' }), result });
             
             } catch (error) {
-                console.log(error);
                 return res.status(500).json({ msg: 'Validation fails' });
             }
         } else return res.status(401).json({ msg: 'Token Invalid' });
@@ -72,9 +73,9 @@ module.exports = {
                 if (!ccp) {
                 return res.status(404).json({ msg: 'CCP not found' });
                 }
-                
-                const afterUpdate = await ccp.update({name, email, password, teacher_id});
-        
+                const hash = generateHash(password);
+                const afterUpdate = await ccp.update({name, email, password: hash, teacher_id});
+                afterUpdate.password = undefined;
                 return res.status(200).json(afterUpdate);
             } catch (error) {
                 return res.status(500).json({ msg: 'Validation fails' });

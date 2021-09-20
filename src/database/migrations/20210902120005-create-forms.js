@@ -110,7 +110,7 @@ module.exports = {
       },
       comentarios_orientando: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       created_at: {
         type: Sequelize.DATE,
