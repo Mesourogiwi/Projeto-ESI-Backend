@@ -6,6 +6,7 @@ const Teacher = require('../models/Teacher');
 const Forms = require('../models/Forms');
 const Evaluation = require('../models/Evaluation');
 const Ccp = require('../models/Ccp');
+const Admin = require('../models/Admin');
 
 const connection = new Sequelize(dbConfig);
 
@@ -21,11 +22,12 @@ Teacher.init(connection);
 Forms.init(connection);
 Evaluation.init(connection);
 Ccp.init(connection);
+Admin.init(connection);
 
 Teacher.associate(connection.models);
 Evaluation.associate(connection.models);
 Student.associate(connection.models);
 Ccp.associate(connection.models);
-Forms.init(connection);
+Forms.associate(connection.models);
 
 module.exports = connection;

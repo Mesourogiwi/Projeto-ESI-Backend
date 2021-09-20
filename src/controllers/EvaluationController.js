@@ -1,42 +1,43 @@
 const Evaluation = require('../models/Evaluation');
-const Forms = require('../models/Forms');
+
+const { CCP_LEVEL, ADMIN_LEVEL, TEACHER_LEVEL, STUDENT_LEVEL } = require('../config/token');
 
 module.exports = {
     async index (req, res) {
-        const result = await Evaluation.findAll({
-            include: [
-                {model: Forms}
-            ]
-        });
+        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL) {
+            const result = await Evaluation.findAll({
+                include: [{ association: 'forms' }]
+                });
 
-        return res.json(result);
+            return res.json(result);
+        } else return res.status(401).json({ msg: 'Token Invalid' });
     },
     async indexById(req, res) {
-        const {id} = req.params;
+        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL || req.level === STUDENT_LEVEL) {
+            const {id} = req.params;
 
-        if (!id || id == null || id == undefined)
-        return res.status(400).json({ msg: 'CCP ID is invalid' });
+            if (!id || id == null || id == undefined)
+            return res.status(400).json({ msg: 'CCP ID is invalid' });
 
-        try {
-            const result = await Evaluation.findByPk(id, {
-                include: [
-                    {model: Forms}
-                ]
-            });
-    
-            return res.status(200).json(result);
-        } catch (error) {
-            return res.status(500).json({ msg: 'Validation fails' });
-        }
+            try {
+                const result = await Evaluation.findByPk(id, {
+                    include: [{ association: 'forms' }]
+                    });
+        
+                return res.status(200).json(result);
+            } catch (error) {
+                return res.status(500).json({ msg: 'Validation fails' });
+            }
+        } else return res.status(401).json({ msg: 'Token Invalid' });
     },
     async store(req, res) {
 
-        const {forms_id, status, comentario_ccp, avaliacao_ccp, comentario_orientador, avaliacao_orientador, is_reavaliation} = req.body;
+        const {student_id, status, comentario_ccp, avaliacao_ccp, comentario_orientador, avaliacao_orientador, is_reavaliation} = req.body;
 
-        if (!forms_id || !status || !comentario_ccp || !avaliacao_ccp || !comentario_orientador || !avaliacao_orientador || !is_reavaliation)
+        if (!student_id || !status || !comentario_ccp || !avaliacao_ccp || !comentario_orientador || !avaliacao_orientador || !is_reavaliation)
         return res.status(400).json({ msg: 'Input is invalid' });
         try {
-            const result = await Evaluation.create({forms_id, status, comentario_ccp, avaliacao_ccp, comentario_orientador, avaliacao_orientador, is_reavaliation});
+            const result = await Evaluation.create({student_id, status, comentario_ccp, avaliacao_ccp, comentario_orientador, avaliacao_orientador, is_reavaliation});
 
             return res.status(200).json(result);
         } catch (error) {
@@ -44,38 +45,40 @@ module.exports = {
         }
     },
     async edit(req, res) {
-        const{id, forms_id, status, comentario_ccp, avaliacao_ccp, comentario_orientador, avaliacao_orientador, is_reavaliation} = req.body;
+        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL) {
+            const{id, student_id, status, comentario_ccp, avaliacao_ccp, comentario_orientador, avaliacao_orientador, is_reavaliation} = req.body;
 
-        try {
-            const result = await Evaluation.findByPk(id);
+            try {
+                const result = await Evaluation.findByPk(id);
 
-            const afterUpdate = await result.update({forms_id, status, comentario_ccp, avaliacao_ccp, comentario_orientador, avaliacao_orientador, is_reavaliation});
+                const afterUpdate = await result.update({student_id, status, comentario_ccp, avaliacao_ccp, comentario_orientador, avaliacao_orientador, is_reavaliation});
 
-            return res.status(200).json(afterUpdate);
-        } catch (error) {
-            return res.status(500).json({ msg: 'Validation fails' });
-        }
-        
+                return res.status(200).json(afterUpdate);
+            } catch (error) {
+                return res.status(500).json({ msg: 'Validation fails' });
+            }
+        } else return res.status(401).json({ msg: 'Token Invalid' });
     },
     async delete(req, res) {
-        const {id} = req.params;
+        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL) {
+            const {id} = req.params;
 
-        if (!id || id == null || id == undefined)
-        return res.status(400).json({ msg: 'Evaluation ID is invalid' });
+            if (!id || id == null || id == undefined)
+            return res.status(400).json({ msg: 'Evaluation ID is invalid' });
 
-        try {
-            const evaluation = await Evaluation.findByPk(id);
-            if (!evaluation) {
-                return res.status(404).json({ msg: 'Evaluation not found' });
+            try {
+                const result = await Evaluation.findByPk(id);
+                if (!result) {
+                    return res.status(404).json({ msg: 'Evaluation not found' });
+                }
+
+                await result.destroy(result);
+
+                res.status(200).json({ msg: 'Evaluation successfully deleted' });
+
+            } catch (error) {
+                return res.status(500).json({ msg: 'Validation fails' });
             }
-
-            await evaluation.destroy(evaluation);
-
-            res.status(200).json({ msg: 'Evaluation successfully deleted' });
-
-        } catch (error) {
-            return res.status(500).json({ msg: 'Validation fails' });
-        }
-        
+        } else return res.status(401).json({ msg: 'Token Invalid' });
     }
 }
