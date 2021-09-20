@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Avaliations extends Model {
+class Evaluation extends Model {
   static init(connection) {
     super.init({
       id: {
@@ -17,11 +17,13 @@ class Avaliations extends Model {
       is_reavaliation: DataTypes.TINYINT,
     }, {
       sequelize: connection,
+      tableName: "evaluation"
     })
   }
   static associate(models) {
-    this.belongsTo(models.Forms, { foreignKey: 'forms_id'});
+    this.belongsTo(models.Student, { foreignKey: 'studentId', as: 'student' });
+    this.hasMany(models.Forms, { foreignKey: 'evaluationId', as: 'forms' });
   }
 }
 
-module.exports = Avaliations;
+module.exports = Evaluation;

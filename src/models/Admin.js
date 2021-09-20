@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Students extends Model {
+class Admin extends Model {
   static init(connection) {
     super.init({
       id: {
@@ -8,19 +8,14 @@ class Students extends Model {
         primaryKey: true,
         autoIncrement: true
       },
-      avaliation_id: DataTypes.INTEGER,
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
-      usp_number: DataTypes.STRING,
-      lattes: DataTypes.STRING
     }, {
       sequelize: connection,
+      tableName: "admin"
     })
-  }
-  static associate(models) {
-    this.belongsTo(models.Avaliations, { foreignKey: 'avaliation_id'});
   }
 }
 
-module.exports = Students;
+module.exports = Admin;

@@ -1,53 +1,105 @@
 const CCP = require('../models/Ccp');
 const Teacher = require('../models/Teacher');
 
+const jwt = require('jsonwebtoken');
+const authConfig = require('../config/auth');
+
+const { CCP_LEVEL, ADMIN_LEVEL } = require('../config/token');
+
+const generateToken = (params = {}) => jwt.sign(params, authConfig.secret, {
+    expiresIn: 300, //cinco minutos
+  });
+
 module.exports = {
     async index (req, res) {
-        const result = await CCP.findAll({
-            include: [
-                {model: Teacher}
-            ]
-        });
+        if (req.level === ADMIN_LEVEL) {    
+            const result = await CCP.findAll({
+                include: [
+                    { association: 'teacher' }                    
+                ]
+            });
 
-        return res.json(result);
+            return res.json(result);
+        } else return res.status(401).json({ msg: 'Token Invalid' });
+    
     },
     async indexById(req, res) {
-        const {id} = req.params;
+        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL) {    
+            const {id} = req.params;
 
-        const result = await CCP.findByPk(id, {
-            include: [
-                {model: Teacher}
-            ]
-        });
+            if (!id || id == null || id == undefined)
+            return res.status(400).json({ msg: 'CCP ID is invalid' });
 
-        return res.json(result);
+            try{
+
+            const result = await CCP.findByPk(id, {
+                include: [{ association: 'teacher' }]
+            });
+
+            return res.status(200).json(result);
+
+            } catch (error) {
+                return res.status(500).json({ msg: 'Validation fails' });
+            }
+        } else return res.status(401).json({ msg: 'Token Invalid' });
     },
     async store(req, res) {
+        if (req.level === ADMIN_LEVEL) {
+            const {name, email, password} = req.body;
 
-        const {name, email, password, teacher_id} = req.body;
+            if (!name || !email || !password )
+            return res.status(400).json({ msg: 'Input is invalid' });
 
-        const result = await CCP.create({name, email, password, teacher_id});
+            try {
+                
+                const result = await CCP.create({name, email, password});
 
-        return res.json(result);
+                return res.status(200).json({ result, token: generateToken({ id: result.id, level: 'ccp' }), result });
+            
+            } catch (error) {
+                console.log(error);
+                return res.status(500).json({ msg: 'Validation fails' });
+            }
+        } else return res.status(401).json({ msg: 'Token Invalid' });
     },
+
     async edit(req, res) {
-        const{id, name, email, password, teacher_id} = req.body;
+        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL ) {    
+            const{id, name, email, password, teacher_id} = req.body;
+            try {
+                
+                const ccp = await CCP.findByPk(id);
+                if (!ccp) {
+                return res.status(404).json({ msg: 'CCP not found' });
+                }
+                
+                const afterUpdate = await ccp.update({name, email, password, teacher_id});
         
-        const result = await CCP.findByPk(id);
-
-        const afterUpdate = await result.update({name, email, password, teacher_id});
-
-        return res.json(afterUpdate);
-
-
+                return res.status(200).json(afterUpdate);
+            } catch (error) {
+                return res.status(500).json({ msg: 'Validation fails' });
+            }
+        } else return res.status(401).json({ msg: 'Token Invalid' });   
     },
     async delete(req, res) {
-        const {id} = req.params;
+        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL ) {  
+            const {id} = req.params;
 
-        const result = await CCP.findByPk(id);
+            if (!id || id == null || id == undefined)
+            return res.status(400).json({ msg: 'CCP ID is invalid' });
 
-        await result.destroy(result);
+            try {
+                const ccp = await CCP.findByPk(id);
+                if (!ccp) {
+                    return res.status(404).json({ msg: 'CCP not found' });
+                }
 
-        return res.json();
+                await ccp.destroy(ccp);
+
+                res.status(200).json({ msg: 'CCP successfully deleted' });
+            } catch (error) {
+                    return res.status(500).json({ msg: 'Validation fails' });
+                }
+        } else return res.status(401).json({ msg: 'Token Invalid' });
     }
 }

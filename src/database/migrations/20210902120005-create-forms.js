@@ -9,6 +9,13 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
+      evaluation_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'evaluation', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
       qual_curso: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -45,7 +52,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      optativas_apravadas: {
+      optativas_aprovadas: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -117,6 +124,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('teacher');
+    return queryInterface.dropTable('forms');
   },
 };

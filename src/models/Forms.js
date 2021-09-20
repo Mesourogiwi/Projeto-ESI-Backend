@@ -17,7 +17,7 @@ class Forms extends Model {
       disciplinas_obrigatorias: DataTypes.STRING,
       disciplinas_optativas: DataTypes.STRING,
       conceitos_disciplinas: DataTypes.INTEGER,
-      optativas_apravadas: DataTypes.STRING,
+      optativas_aprovadas: DataTypes.STRING,
       congresso_exterior: DataTypes.STRING,
       congresso_interior:DataTypes.STRING,
       estagio_pesquisa: DataTypes.STRING,
@@ -34,10 +34,11 @@ class Forms extends Model {
       comentarios_orientando: DataTypes.STRING,
     }, {
       sequelize: connection,
+      tableName: "forms"
     })
   }
   static associate(models) {
-    this.belongsTo(models.Avaliations, { foreignKey: 'avaliationId', as: 'avaliations' });
+    this.belongsTo(models.Evaluation, { foreignKey: 'evaluationId', as: 'evaluation' });
   }
 }
 
