@@ -8,13 +8,12 @@ class Student extends Model {
         primaryKey: true,
         autoIncrement: true
       },
-      //arrumar models
-      avaliation_id: DataTypes.INTEGER,
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
       usp_number: DataTypes.STRING,
-      lattes: DataTypes.STRING
+      lattes: DataTypes.STRING,
+      teacher_id: DataTypes.INTEGER,
     }, {
       sequelize: connection,
       tableName: "student"

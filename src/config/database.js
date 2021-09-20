@@ -1,11 +1,13 @@
-require('dotenv').config();
+require('dotenv').config({
+  path: process.env.NODE_ENV.trim() === 'test' ? '.env.test' : '.env'
+});
 
 module.exports = {
   dialect: 'mysql',
-  host: 'bqhwyyajk4j3cfebwybj-mysql.services.clever-cloud.com',
-  username: 'uy7zazbjgtvoeedz',
-  password: 'hvSTYh7KBafqxi49FTAb',
-  database: 'bqhwyyajk4j3cfebwybj',
+  host: process.env.DB_HOST,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
   port: 3306,
   define: {
     timestamps: true,

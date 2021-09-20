@@ -32,6 +32,7 @@ class Forms extends Model {
       estagio_pesquisa_exterior: DataTypes.STRING,
       declarar_ccp: DataTypes.STRING,
       comentarios_orientando: DataTypes.STRING,
+      evaluation_id: DataTypes.INTEGER,
     }, {
       sequelize: connection,
       tableName: "forms"

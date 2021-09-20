@@ -11,7 +11,7 @@ class Teacher extends Model {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
-      student_id: DataTypes.INTEGER
+      ccp_id: DataTypes.INTEGER
     }, {
       sequelize: connection,
       tableName: 'teacher'
