@@ -7,8 +7,11 @@ const TeacherController = require('./controllers/TeacherController');
 const CcpController = require('./controllers/CcpController');
 const EvaluationController = require('./controllers/EvaluationController');
 const AdminController = require('./controllers/AdminController');
+const LoginController = require('./controllers/LoginController');
 
 const auth = require('./middlewares/auth');
+
+routes.post('/login', LoginController.login);
 
 routes.post('/forms', auth, FormsController.store);
 routes.get('/forms', auth, FormsController.index);
