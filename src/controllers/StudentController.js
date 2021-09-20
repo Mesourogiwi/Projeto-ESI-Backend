@@ -1,11 +1,11 @@
-const Teacher = require('../models/Teacher')
 const Student = require('../models/Student')
+const Evaluation = require('../models/Evaluation')
 
 module.exports = {
     async index(req, res) {
-        const result = await Teacher.findAll({
+        const result = await Student.findAll({
             include: [
-                {model: Student}
+                {model: Evaluation}
             ]
         })
 
@@ -18,9 +18,9 @@ module.exports = {
         return res.status(400).json({ msg: 'Input is invalid' });
 
         try {
-            const result = await Teacher.findByPk(id, {
+            const result = await Student.findByPk(id, {
                 include: [
-                    {model: Student}
+                    {model: Evaluation}
                 ]
             });
     
@@ -30,14 +30,13 @@ module.exports = {
         }
     },
     async store(req, res) {
-        
-        const {name, email, password, student_id} = req.body;
+        const {name, email, password, usp_number, lattes, avaliation_id} = req.body;
 
-        if (!name || !email || !password || !student_id)
+        if (!name || !email || !password || !usp_number || !lattes || !avaliation_id)
         return res.status(400).json({ msg: 'Input is invalid' });
 
         try {
-            const result = await Teacher.create({name, email, password, student_id});
+            const result = await Student.create({name, email, password, usp_number, lattes, avaliation_id});
 
             return res.status(200).json(result);
         } catch (error) {
@@ -45,21 +44,21 @@ module.exports = {
         }
     },
     async edit(req, res) {
-        const{id, name, email, password, student_id} = req.body;
+        const{id, name, email, password, usp_number, lattes, avaliation_id} = req.body;
 
-        if (!id || !name || !email || !password || !student_id)
+        if (!id || !name || !email || !password || !usp_number || !lattes || !avaliation_id)
         return res.status(400).json({ msg: 'Input is invalid' });
-
+        
         try {
-            const result = await Teacher.findByPk(id);
+            const result = await Student.findByPk(id);
 
-            const afterUpdate = await result.update({name, email, password, student_id});
+        const afterUpdate = await result.update({name, email, password, usp_number, lattes, avaliation_id});
 
-            return res.status(200).json(afterUpdate);
+        return res.status(200).json(afterUpdate);
         } catch (error) {
             return res.status(500).json({ msg: 'Validation fails' });
         }
-        
+
     },
     async delete(req, res) {
         const {id} = req.params;
@@ -68,11 +67,11 @@ module.exports = {
         return res.status(400).json({ msg: 'Input is invalid' });
 
         try {
-            const result = await Teacher.findByPk(id);
+            const result = await Student.findByPk(id);
 
             await result.destroy(result);
-
-            return res.status(200).json();
+    
+            return res.status(200).json(); 
         } catch (error) {
             return res.status(500).json({ msg: 'Validation fails' });
         }

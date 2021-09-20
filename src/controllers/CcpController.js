@@ -33,22 +33,16 @@ module.exports = {
     },
     async store(req, res) {
 
-        const {name, email, password, teacher_id} = req.body;
+        const {name, email, password} = req.body;
 
-        if (!name || name == null || name == undefined)
-        return res.status(400).json({ msg: 'Name is invalid' });
-        if (!email || email == null || email == undefined)
-        return res.status(400).json({ msg: 'Email is invalid' });
-        if (!password || password == null || password == undefined)
-        return res.status(400).json({ msg: 'Password is invalid' });
-        if (!teacher_id || teacher_id == null || teacher_id == undefined)
-        return res.status(400).json({ msg: 'Teacher ID is invalid' });
+        if (!name || !email || !password )
+        return res.status(400).json({ msg: 'Input is invalid' });
 
         try {
             
-            const result = await CCP.create({name, email, password, teacher_id});
+            const result = await CCP.create({name, email, password});
 
-            return res.json(result);
+            return res.status(200).json(result);
         
         } catch (error) {
             return res.status(500).json({ msg: 'Validation fails' });
@@ -58,16 +52,9 @@ module.exports = {
     async edit(req, res) {
         const{id, name, email, password, teacher_id} = req.body;
 
-        if (!id || id == null || id == undefined)
-        return res.status(400).json({ msg: 'ID is invalid' });
-        if (!name || name == null || name == undefined)
-        return res.status(400).json({ msg: 'Name is invalid' });
-        if (!email || email == null || email == undefined)
-        return res.status(400).json({ msg: 'Email is invalid' });
-        if (!password || password == null || password == undefined)
-        return res.status(400).json({ msg: 'Password is invalid' });
-        if (!teacher_id || teacher_id == null || teacher_id == undefined)
-        return res.status(400).json({ msg: 'Teacher ID is invalid' });
+        //tirar de todos
+        if (!id || !name || !email || !password || !teacher_id)
+        return res.status(400).json({ msg: 'Input is invalid' });
 
         try {
             

@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-class ccps extends Model {
+class Ccp extends Model {
   static init(connection) {
     super.init({
       id: {
@@ -11,14 +11,15 @@ class ccps extends Model {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
-      teacher_id: DataTypes.INTEGER
     }, {
       sequelize: connection,
+      //colocar pra todos os modos
+      tableName: "ccp"
     })
   }
   static associate(models) {
-    this.belongsTo(models.Teacher, { foreignKey: 'teacher_id'});
+    this.hasMany(models.Teacher, { foreignKey: 'ccpId', as: 'teacher' });
   }
 }
 
-module.exports = ccps;
+module.exports = Ccp;

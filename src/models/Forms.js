@@ -37,7 +37,7 @@ class Forms extends Model {
     })
   }
   static associate(models) {
-    this.belongsTo(models.Avaliations, { foreignKey: 'avaliationId', as: 'avaliations' });
+    this.belongsTo(models.Evaluation, { foreignKey: 'evaluationId', as: 'evaluation' });
   }
 }
 

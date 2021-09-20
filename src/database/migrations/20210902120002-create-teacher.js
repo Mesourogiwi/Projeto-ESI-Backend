@@ -2,43 +2,31 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('evaluations', {
+    return queryInterface.createTable('teacher', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
-      forms_id: {
+      ccp_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'forms', key: 'id' },
+        references: { model: 'ccp', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      status: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      comentario_ccp: {
+      email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      avaliacao_ccp: {
+      password: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      comentario_orientador: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      avaliacao_orientador: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      is_reavaliation: {
-        type: Sequelize.TINYINT,
         allowNull: false,
       },
       created_at: {
@@ -53,6 +41,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('evaluations');
+    return queryInterface.dropTable('teacher');
   },
 };
