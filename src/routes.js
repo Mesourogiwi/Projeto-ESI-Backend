@@ -6,6 +6,7 @@ const StudentController = require('./controllers/StudentController');
 const TeacherController = require('./controllers/TeacherController');
 const CcpController = require('./controllers/CcpController');
 const EvaluationController = require('./controllers/EvaluationController');
+const AdminController = require('./controllers/AdminController');
 
 routes.post('/forms', FormsController.store);
 routes.get('/forms', FormsController.index);
@@ -36,5 +37,11 @@ routes.get('/evaluations', EvaluationController.index);
 routes.get('/evaluations/:id', EvaluationController.indexById)
 routes.put('/evaluations', EvaluationController.edit);
 routes.delete('/evaluations/:id', EvaluationController.delete);
+
+routes.post('/admin', AdminController.store);
+routes.get('/admins', AdminController.index);
+routes.get('/admin/:id', AdminController.indexById)
+routes.put('/admin', AdminController.edit);
+routes.delete('/admin/:id', AdminController.delete);
 
 module.exports = routes
