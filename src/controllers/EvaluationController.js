@@ -16,8 +16,8 @@ module.exports = {
         if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL || req.level === STUDENT_LEVEL) {
             const {id} = req.params;
 
-            if (!id || id == null || id == undefined)
-            return res.status(400).json({ msg: 'CCP ID is invalid' });
+            if (!id)
+            return res.status(400).json({ msg: 'ID is invalid' });
 
             try {
                 const result = await Evaluation.findByPk(id, {
