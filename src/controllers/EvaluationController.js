@@ -45,9 +45,6 @@ module.exports = {
     },
     async edit(req, res) {
         const{id, forms_id, status, comentario_ccp, avaliacao_ccp, comentario_orientador, avaliacao_orientador, is_reavaliation} = req.body;
-        
-        if (!id || !forms_id || !status || !comentario_ccp || !avaliacao_ccp || !comentario_orientador || !avaliacao_orientador || !is_reavaliation)
-        return res.status(400).json({ msg: 'Input is invalid' });
 
         try {
             const result = await Evaluation.findByPk(id);
@@ -59,8 +56,6 @@ module.exports = {
             return res.status(500).json({ msg: 'Validation fails' });
         }
         
-
-
     },
     async delete(req, res) {
         const {id} = req.params;

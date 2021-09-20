@@ -13,7 +13,6 @@ class Ccp extends Model {
       password: DataTypes.STRING,
     }, {
       sequelize: connection,
-      //colocar pra todos os modos
       tableName: "ccp"
     })
   }

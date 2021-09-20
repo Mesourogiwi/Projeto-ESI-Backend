@@ -17,6 +17,7 @@ class Student extends Model {
       lattes: DataTypes.STRING
     }, {
       sequelize: connection,
+      tableName: "student"
     })
   }
   static associate(models) {

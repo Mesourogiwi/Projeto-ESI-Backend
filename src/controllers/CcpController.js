@@ -51,11 +51,6 @@ module.exports = {
 
     async edit(req, res) {
         const{id, name, email, password, teacher_id} = req.body;
-
-        //tirar de todos
-        if (!id || !name || !email || !password || !teacher_id)
-        return res.status(400).json({ msg: 'Input is invalid' });
-
         try {
             
             const ccp = await CCP.findByPk(id);

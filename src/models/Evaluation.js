@@ -17,6 +17,7 @@ class Evaluation extends Model {
       is_reavaliation: DataTypes.TINYINT,
     }, {
       sequelize: connection,
+      tableName: "evaluation"
     })
   }
   static associate(models) {

@@ -46,10 +46,6 @@ module.exports = {
     },
     async edit(req, res) {
         const{id, name, email, password, student_id} = req.body;
-
-        if (!id || !name || !email || !password || !student_id)
-        return res.status(400).json({ msg: 'Input is invalid' });
-
         try {
             const result = await Teacher.findByPk(id);
 

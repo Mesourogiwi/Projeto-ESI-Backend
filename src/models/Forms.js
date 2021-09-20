@@ -34,6 +34,7 @@ class Forms extends Model {
       comentarios_orientando: DataTypes.STRING,
     }, {
       sequelize: connection,
+      tableName: "forms"
     })
   }
   static associate(models) {
