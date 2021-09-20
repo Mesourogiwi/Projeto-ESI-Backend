@@ -18,7 +18,8 @@ class Teacher extends Model {
     })
   }
   static associate(models) {
-    this.belongsTo(models.Students, { foreignKey: 'student_id'});
+    this.belongsTo(models.Ccp, { foreignKey: 'ccpId', as: 'ccp' });
+    this.hasMany(models.Student, { foreignKey: 'teacherId', as: 'student' });
   }
 }
 

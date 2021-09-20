@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
 const dbConfig = require('../config/database');
 
-const Students = require('../models/Students')
+const Student = require('../models/Student')
 const Teacher = require('../models/Teacher');
 const Forms = require('../models/Forms');
-const Avaliations = require('../models/Avaliations');
+const Evaluation = require('../models/Evaluation');
 const Ccp = require('../models/Ccp');
 
 const connection = new Sequelize(dbConfig);
@@ -16,15 +16,16 @@ connection.authenticate().then(() => {
 })
 
 
-Students.init(connection);
+Student.init(connection);
 Teacher.init(connection);
 Forms.init(connection);
-Avaliations.init(connection);
+Evaluation.init(connection);
 Ccp.init(connection);
 
 Teacher.associate(connection.models);
-Avaliations.associate(connection.models);
-Students.associate(connection.models);
+Evaluation.associate(connection.models);
+Student.associate(connection.models);
 Ccp.associate(connection.models);
+Forms.init(connection);
 
 module.exports = connection;

@@ -17,10 +17,12 @@ class Evaluation extends Model {
       is_reavaliation: DataTypes.TINYINT,
     }, {
       sequelize: connection,
+      tableName: "evaluation"
     })
   }
   static associate(models) {
-    this.belongsTo(models.Forms, { foreignKey: 'forms_id'});
+    this.belongsTo(models.Student, { foreignKey: 'studentId', as: 'student' });
+    this.hasMany(models.Forms, { foreignKey: 'evaluationId', as: 'forms' });
   }
 }
 

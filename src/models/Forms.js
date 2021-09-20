@@ -34,10 +34,11 @@ class Forms extends Model {
       comentarios_orientando: DataTypes.STRING,
     }, {
       sequelize: connection,
+      tableName: "forms"
     })
   }
   static associate(models) {
-    this.belongsTo(models.Avaliations, { foreignKey: 'avaliationId', as: 'avaliations' });
+    this.belongsTo(models.Evaluation, { foreignKey: 'evaluationId', as: 'evaluation' });
   }
 }
 

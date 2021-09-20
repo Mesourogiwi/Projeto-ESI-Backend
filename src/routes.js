@@ -2,10 +2,10 @@ const express = require('express');
 const routes = express.Router();
 
 const FormsController = require('./controllers/FormsController');
-const StudentController = require('./controllers/StudentsController');
+const StudentController = require('./controllers/StudentController');
 const TeacherController = require('./controllers/TeacherController');
 const CcpController = require('./controllers/CcpController');
-const AvaliationsController = require('./controllers/AvaliationsController');
+const EvaluationController = require('./controllers/EvaluationController');
 
 routes.post('/forms', FormsController.store);
 routes.get('/forms', FormsController.index);
@@ -31,10 +31,10 @@ routes.get('/ccp/:id', CcpController.indexById)
 routes.put('/ccp', CcpController.edit);
 routes.delete('/ccp/:id', CcpController.delete);
 
-routes.post('/avaliations', AvaliationsController.store);
-routes.get('/avaliations', AvaliationsController.index);
-routes.get('/avaliations/:id', AvaliationsController.indexById)
-routes.put('/avaliations', AvaliationsController.edit);
-routes.delete('/avaliations/:id', AvaliationsController.delete);
+routes.post('/evaluation', EvaluationController.store);
+routes.get('/evaluations', EvaluationController.index);
+routes.get('/evaluations/:id', EvaluationController.indexById)
+routes.put('/evaluations', EvaluationController.edit);
+routes.delete('/evaluations/:id', EvaluationController.delete);
 
 module.exports = routes
