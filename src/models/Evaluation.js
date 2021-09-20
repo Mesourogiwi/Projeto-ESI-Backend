@@ -8,13 +8,13 @@ class Evaluation extends Model {
         primaryKey: true,
         autoIncrement: true
       },
-      forms_id: DataTypes.INTEGER,
       status: DataTypes.STRING,
       comentario_ccp: DataTypes.STRING,
       avaliacao_ccp: DataTypes.STRING, 
       comentario_orientador: DataTypes.STRING,
       avaliacao_orientador: DataTypes.STRING,
       is_reavaliation: DataTypes.TINYINT,
+      students_id: DataTypes.INTEGER,
     }, {
       sequelize: connection,
       tableName: "evaluation"

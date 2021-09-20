@@ -6,16 +6,25 @@
   "author": "GSushi <gmarcieloliveira@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "pretest": "NODE_ENV=test sequelize db:migrate",
+    "test": "NODE_ENV=test & jest",
+    "posttest": "NODE_ENV=test & sequelize db:migrate:undo:all"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "husky": "^7.0.2",
+    "jest": "^27.2.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.0",
     "nodemon": "^2.0.12",
-    "sequelize": "^6.6.5"
+    "sequelize": "^6.6.5",
+    "supertest": "^6.1.6",
+    "swagger": "^0.7.5",
+    "swagger-ui": "^3.52.3",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

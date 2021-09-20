@@ -18,7 +18,7 @@ module.exports = {
     async indexById(req, res) {
         const {id} = req.params;
 
-        if (!id || id == null || id == undefined)
+        if (!id)
         return res.status(400).json({ msg: 'Admin ID is invalid' });
 
         try{
@@ -36,6 +36,7 @@ module.exports = {
       return res.status(400).json({ msg: 'Input is invalid' });
 
       try {
+        
           const result = await Admin.create({name, email, password});
           return res.status(200).json({ result, token: generateToken({ id: result.id, level: 'admin' }), result });
       
@@ -66,7 +67,7 @@ module.exports = {
       if (req.level === ADMIN_LEVEL) {  
         const {id} = req.params;
 
-          if (!id || id == null || id == undefined)
+          if (!id)
           return res.status(400).json({ msg: 'Admin ID is invalid' });
 
           try {

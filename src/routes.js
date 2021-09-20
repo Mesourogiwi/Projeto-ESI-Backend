@@ -8,40 +8,42 @@ const CcpController = require('./controllers/CcpController');
 const EvaluationController = require('./controllers/EvaluationController');
 const AdminController = require('./controllers/AdminController');
 
-routes.post('/forms', FormsController.store);
-routes.get('/forms', FormsController.index);
-routes.get('/forms/:id', FormsController.indexById)
-routes.put('/forms', FormsController.edit);
-routes.delete('/forms/:id', FormsController.delete);
+const auth = require('./middlewares/auth');
+
+routes.post('/forms', auth, FormsController.store);
+routes.get('/forms', auth, FormsController.index);
+routes.get('/forms/:id', auth, FormsController.indexById)
+routes.put('/forms', auth, FormsController.edit);
+routes.delete('/forms/:id', auth, FormsController.delete);
 
 routes.post('/student', StudentController.store);
-routes.get('/student', StudentController.index);
-routes.get('/student/:id', StudentController.indexById)
-routes.put('/student', StudentController.edit);
-routes.delete('/student/:id', StudentController.delete);
+routes.get('/student', auth, StudentController.index);
+routes.get('/student/:id', auth, StudentController.indexById)
+routes.put('/student', auth, StudentController.edit);
+routes.delete('/student/:id', auth, StudentController.delete);
 
-routes.post('/teacher', TeacherController.store);
-routes.get('/teacher', TeacherController.index);
-routes.get('/teacher/:id', TeacherController.indexById)
-routes.put('/teacher', TeacherController.edit);
-routes.delete('/teacher/:id', TeacherController.delete);
+routes.post('/teacher', auth, TeacherController.store);
+routes.get('/teacher', auth, TeacherController.index);
+routes.get('/teacher/:id', auth, TeacherController.indexById)
+routes.put('/teacher', auth, TeacherController.edit);
+routes.delete('/teacher/:id', auth, TeacherController.delete);
 
-routes.post('/ccp', CcpController.store);
-routes.get('/ccp', CcpController.index);
-routes.get('/ccp/:id', CcpController.indexById)
-routes.put('/ccp', CcpController.edit);
-routes.delete('/ccp/:id', CcpController.delete);
+routes.post('/ccp', auth, CcpController.store);
+routes.get('/ccp', auth, CcpController.index);
+routes.get('/ccp/:id', auth, CcpController.indexById)
+routes.put('/ccp', auth, CcpController.edit);
+routes.delete('/ccp/:id', auth, CcpController.delete);
 
 routes.post('/evaluation', EvaluationController.store);
-routes.get('/evaluations', EvaluationController.index);
-routes.get('/evaluations/:id', EvaluationController.indexById)
-routes.put('/evaluations', EvaluationController.edit);
-routes.delete('/evaluations/:id', EvaluationController.delete);
+routes.get('/evaluation', auth, EvaluationController.index);
+routes.get('/evaluation/:id', auth, EvaluationController.indexById)
+routes.put('/evaluation', auth, EvaluationController.edit);
+routes.delete('/evaluation/:id', auth, EvaluationController.delete);
 
 routes.post('/admin', AdminController.store);
-routes.get('/admins', AdminController.index);
-routes.get('/admin/:id', AdminController.indexById)
-routes.put('/admin', AdminController.edit);
-routes.delete('/admin/:id', AdminController.delete);
+routes.get('/admin', auth, AdminController.index);
+routes.get('/admin/:id', auth, AdminController.indexById)
+routes.put('/admin', auth, AdminController.edit);
+routes.delete('/admin/:id', auth, AdminController.delete);
 
 module.exports = routes

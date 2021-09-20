@@ -1,0 +1,1932 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Documentação API Projeto ES1",
+    "version": "1.0.0",
+    "title": "Projeto ES1 - CCP",
+    "contact": {
+      "name": "Gustavo Oliveira & Lucas Q. Honorato"
+    }
+  },
+  "apis": ["./src/server.js"],
+  "basePath": "/",
+  "paths": {
+    "/admin": {
+      "post": {
+        "tags": ["Administrador"],
+        "description": "Usado para criar um administrador",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos, preencha todos os campos!"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Administrador"],
+        "description": "Usado para listar todos os administradores",
+        "responses": {
+          "200": {
+            "description": "Listados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Administrador"],
+        "description": "Usado para editar um administrador",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Editado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/:id": {
+      "get": {
+        "tags": ["Administrador"],
+        "description": "Usado para listar um administrador",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID do administrador que será listado"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listagem do administrador",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "ID não encontrado"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Administrador"],
+        "description": "Usado para excluir um administrador",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID do administrador que será excluído"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exclusão do administrador",
+            "responses": {
+              "200": {
+                "description": "Excluído com sucesso"
+              },
+              "400": {
+                "description": "ID inválido"
+              },
+              "404": {
+                "description": "ID não encontrado"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ccp": {
+      "post": {
+        "tags": ["CCP"],
+        "description": "Usado para criar um usuário CCP",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos, preencha todos os campos!"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["CCP"],
+        "description": "Usado para listar todos os usuários CCP",
+        "responses": {
+          "200": {
+            "description": "Listados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token inválido"
+          }
+        }
+      },
+      "put": {
+        "tags": ["CCP"],
+        "description": "Usado para editar um usuário CCP",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Editado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ccp/:id": {
+      "get": {
+        "tags": ["CCP"],
+        "description": "Usado para listar um usuário CCP",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID do administrador que será listado"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listagem do usuário CCP",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "ID não encontrado"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["CCP"],
+        "description": "Usado para excluir um usuário CCP",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID do usuário CCP que será excluído"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exclusão do usuário CCP",
+            "responses": {
+              "200": {
+                "description": "Excluído com sucesso"
+              },
+              "400": {
+                "description": "ID inválido"
+              },
+              "404": {
+                "description": "ID não encontrado"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/evaluation": {
+      "post": {
+        "tags": ["Avaliação"],
+        "description": "Usado para criar uma nova avaliação",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "student_id": {
+                    "type": "integer"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "comentario_ccp": {
+                    "type": "string"
+                  },
+                  "avaliacao_ccp": {
+                    "type": "string"
+                  },
+                  "comentario_orientador": {
+                    "type": "string"
+                  },
+                  "avaliacao_orientador": {
+                    "type": "string"
+                  },
+                  "is_reavaliation": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "student_id": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "comentario_ccp": {
+                      "type": "string"
+                    },
+                    "avaliacao_ccp": {
+                      "type": "string"
+                    },
+                    "comentario_orientador": {
+                      "type": "string"
+                    },
+                    "avaliacao_orientador": {
+                      "type": "string"
+                    },
+                    "is_reavaliation": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos, preencha todos os campos!"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Avaliação"],
+        "description": "Usado para listar todas avaliações",
+        "responses": {
+          "200": {
+            "description": "Listados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "student_id": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "comentario_ccp": {
+                      "type": "string"
+                    },
+                    "avaliacao_ccp": {
+                      "type": "string"
+                    },
+                    "comentario_orientador": {
+                      "type": "string"
+                    },
+                    "avaliacao_orientador": {
+                      "type": "string"
+                    },
+                    "is_reavaliation": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token inválido"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Avaliação"],
+        "description": "Usado para editar uma avaliação",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "student_id": {
+                    "type": "integer"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "comentario_ccp": {
+                    "type": "string"
+                  },
+                  "avaliacao_ccp": {
+                    "type": "string"
+                  },
+                  "comentario_orientador": {
+                    "type": "string"
+                  },
+                  "avaliacao_orientador": {
+                    "type": "string"
+                  },
+                  "is_reavaliation": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Editado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "student_id": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "comentario_ccp": {
+                      "type": "string"
+                    },
+                    "avaliacao_ccp": {
+                      "type": "string"
+                    },
+                    "comentario_orientador": {
+                      "type": "string"
+                    },
+                    "avaliacao_orientador": {
+                      "type": "string"
+                    },
+                    "is_reavaliation": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/evaluation/:id": {
+      "get": {
+        "tags": ["Avaliação"],
+        "description": "Usado para listar uma avaliação",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID da avaliação que será listada"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listagem da avaliação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "student_id": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "comentario_ccp": {
+                      "type": "string"
+                    },
+                    "avaliacao_ccp": {
+                      "type": "string"
+                    },
+                    "comentario_orientador": {
+                      "type": "string"
+                    },
+                    "avaliacao_orientador": {
+                      "type": "string"
+                    },
+                    "is_reavaliation": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "ID não encontrado"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Avaliação"],
+        "description": "Usado para excluir uma avaliação",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID da avaliação que será excluída"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exclusão da avaliação",
+            "responses": {
+              "200": {
+                "description": "Excluído com sucesso"
+              },
+              "400": {
+                "description": "ID inválido"
+              },
+              "404": {
+                "description": "ID não encontrado"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/forms": {
+      "post": {
+        "tags": ["Formulário"],
+        "description": "Usado para criar um novo formulário",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "qual_curso": {
+                    "type": "integer"
+                  },
+                  "nome_orientador": {
+                    "type": "string"
+                  },
+                  "link_curriculo": {
+                    "type": "string"
+                  },
+                  "data_latte": {
+                    "type": "string"
+                  },
+                  "ultimo_relatorio": {
+                    "type": "integer"
+                  },
+                  "ultimo_semestre": {
+                    "type": "integer"
+                  },
+                  "disciplinas_obrigatorias": {
+                    "type": "string"
+                  },
+                  "disciplinas_optativas": {
+                    "type": "string"
+                  },
+                  "conceitos_disciplinas": {
+                    "type": "integer"
+                  },
+                  "optativas_aprovadas": {
+                    "type": "string"
+                  },
+                  "congresso_exterior": {
+                    "type": "string"
+                  },
+                  "congresso_interior": {
+                    "type": "integer"
+                  },
+                  "estagio_pesquisa": {
+                    "type": "integer"
+                  },
+                  "disciplinas_reprovadas_mestrado": {
+                    "type": "integer"
+                  },
+                  "disciplinas_reprovadas_curso": {
+                    "type": "integer"
+                  },
+                  "exame_idiomas": {
+                    "type": "integer"
+                  },
+                  "exame_qualificacao": {
+                    "type": "integer"
+                  },
+                  "limite_qualificacao": {
+                    "type": "integer"
+                  },
+                  "artigos_aceitos": {
+                    "type": "integer"
+                  },
+                  "artigos_aguardando": {
+                    "type": "integer"
+                  },
+                  "artigos_preparacao": {
+                    "type": "integer"
+                  },
+                  "estagio_pesquisa_exterior": {
+                    "type": "string"
+                  },
+                  "declarar_ccp": {
+                    "type": "string"
+                  },
+                  "comentarios_orientando": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "qual_curso": {
+                      "type": "integer"
+                    },
+                    "nome_orientador": {
+                      "type": "string"
+                    },
+                    "link_curriculo": {
+                      "type": "string"
+                    },
+                    "data_latte": {
+                      "type": "string"
+                    },
+                    "ultimo_relatorio": {
+                      "type": "integer"
+                    },
+                    "ultimo_semestre": {
+                      "type": "integer"
+                    },
+                    "disciplinas_obrigatorias": {
+                      "type": "string"
+                    },
+                    "disciplinas_optativas": {
+                      "type": "string"
+                    },
+                    "conceitos_disciplinas": {
+                      "type": "integer"
+                    },
+                    "optativas_aprovadas": {
+                      "type": "string"
+                    },
+                    "congresso_exterior": {
+                      "type": "string"
+                    },
+                    "congresso_interior": {
+                      "type": "integer"
+                    },
+                    "estagio_pesquisa": {
+                      "type": "integer"
+                    },
+                    "disciplinas_reprovadas_mestrado": {
+                      "type": "integer"
+                    },
+                    "disciplinas_reprovadas_curso": {
+                      "type": "integer"
+                    },
+                    "exame_idiomas": {
+                      "type": "integer"
+                    },
+                    "exame_qualificacao": {
+                      "type": "integer"
+                    },
+                    "limite_qualificacao": {
+                      "type": "integer"
+                    },
+                    "artigos_aceitos": {
+                      "type": "integer"
+                    },
+                    "artigos_aguardando": {
+                      "type": "integer"
+                    },
+                    "artigos_preparacao": {
+                      "type": "integer"
+                    },
+                    "estagio_pesquisa_exterior": {
+                      "type": "string"
+                    },
+                    "declarar_ccp": {
+                      "type": "string"
+                    },
+                    "comentarios_orientando": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos, preencha todos os campos!"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Formulário"],
+        "description": "Usado para listar todos fomulários",
+        "responses": {
+          "200": {
+            "description": "Listados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "qual_curso": {
+                      "type": "integer"
+                    },
+                    "nome_orientador": {
+                      "type": "string"
+                    },
+                    "link_curriculo": {
+                      "type": "string"
+                    },
+                    "data_latte": {
+                      "type": "string"
+                    },
+                    "ultimo_relatorio": {
+                      "type": "integer"
+                    },
+                    "ultimo_semestre": {
+                      "type": "integer"
+                    },
+                    "disciplinas_obrigatorias": {
+                      "type": "string"
+                    },
+                    "disciplinas_optativas": {
+                      "type": "string"
+                    },
+                    "conceitos_disciplinas": {
+                      "type": "integer"
+                    },
+                    "optativas_aprovadas": {
+                      "type": "string"
+                    },
+                    "congresso_exterior": {
+                      "type": "string"
+                    },
+                    "congresso_interior": {
+                      "type": "integer"
+                    },
+                    "estagio_pesquisa": {
+                      "type": "integer"
+                    },
+                    "disciplinas_reprovadas_mestrado": {
+                      "type": "integer"
+                    },
+                    "disciplinas_reprovadas_curso": {
+                      "type": "integer"
+                    },
+                    "exame_idiomas": {
+                      "type": "integer"
+                    },
+                    "exame_qualificacao": {
+                      "type": "integer"
+                    },
+                    "limite_qualificacao": {
+                      "type": "integer"
+                    },
+                    "artigos_aceitos": {
+                      "type": "integer"
+                    },
+                    "artigos_aguardando": {
+                      "type": "integer"
+                    },
+                    "artigos_preparacao": {
+                      "type": "integer"
+                    },
+                    "estagio_pesquisa_exterior": {
+                      "type": "string"
+                    },
+                    "declarar_ccp": {
+                      "type": "string"
+                    },
+                    "comentarios_orientando": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token inválido"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Formulário"],
+        "description": "Usado para editar um formulário",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "qual_curso": {
+                    "type": "integer"
+                  },
+                  "nome_orientador": {
+                    "type": "string"
+                  },
+                  "link_curriculo": {
+                    "type": "string"
+                  },
+                  "data_latte": {
+                    "type": "string"
+                  },
+                  "ultimo_relatorio": {
+                    "type": "integer"
+                  },
+                  "ultimo_semestre": {
+                    "type": "integer"
+                  },
+                  "disciplinas_obrigatorias": {
+                    "type": "string"
+                  },
+                  "disciplinas_optativas": {
+                    "type": "string"
+                  },
+                  "conceitos_disciplinas": {
+                    "type": "integer"
+                  },
+                  "optativas_aprovadas": {
+                    "type": "string"
+                  },
+                  "congresso_exterior": {
+                    "type": "string"
+                  },
+                  "congresso_interior": {
+                    "type": "integer"
+                  },
+                  "estagio_pesquisa": {
+                    "type": "integer"
+                  },
+                  "disciplinas_reprovadas_mestrado": {
+                    "type": "integer"
+                  },
+                  "disciplinas_reprovadas_curso": {
+                    "type": "integer"
+                  },
+                  "exame_idiomas": {
+                    "type": "integer"
+                  },
+                  "exame_qualificacao": {
+                    "type": "integer"
+                  },
+                  "limite_qualificacao": {
+                    "type": "integer"
+                  },
+                  "artigos_aceitos": {
+                    "type": "integer"
+                  },
+                  "artigos_aguardando": {
+                    "type": "integer"
+                  },
+                  "artigos_preparacao": {
+                    "type": "integer"
+                  },
+                  "estagio_pesquisa_exterior": {
+                    "type": "string"
+                  },
+                  "declarar_ccp": {
+                    "type": "string"
+                  },
+                  "comentarios_orientando": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Editado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "qual_curso": {
+                      "type": "integer"
+                    },
+                    "nome_orientador": {
+                      "type": "string"
+                    },
+                    "link_curriculo": {
+                      "type": "string"
+                    },
+                    "data_latte": {
+                      "type": "string"
+                    },
+                    "ultimo_relatorio": {
+                      "type": "integer"
+                    },
+                    "ultimo_semestre": {
+                      "type": "integer"
+                    },
+                    "disciplinas_obrigatorias": {
+                      "type": "string"
+                    },
+                    "disciplinas_optativas": {
+                      "type": "string"
+                    },
+                    "conceitos_disciplinas": {
+                      "type": "integer"
+                    },
+                    "optativas_aprovadas": {
+                      "type": "string"
+                    },
+                    "congresso_exterior": {
+                      "type": "string"
+                    },
+                    "congresso_interior": {
+                      "type": "integer"
+                    },
+                    "estagio_pesquisa": {
+                      "type": "integer"
+                    },
+                    "disciplinas_reprovadas_mestrado": {
+                      "type": "integer"
+                    },
+                    "disciplinas_reprovadas_curso": {
+                      "type": "integer"
+                    },
+                    "exame_idiomas": {
+                      "type": "integer"
+                    },
+                    "exame_qualificacao": {
+                      "type": "integer"
+                    },
+                    "limite_qualificacao": {
+                      "type": "integer"
+                    },
+                    "artigos_aceitos": {
+                      "type": "integer"
+                    },
+                    "artigos_aguardando": {
+                      "type": "integer"
+                    },
+                    "artigos_preparacao": {
+                      "type": "integer"
+                    },
+                    "estagio_pesquisa_exterior": {
+                      "type": "string"
+                    },
+                    "declarar_ccp": {
+                      "type": "string"
+                    },
+                    "comentarios_orientando": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/forms/:id": {
+      "get": {
+        "tags": ["Formulário"],
+        "description": "Usado para listar um formulário",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID da avaliação que será listada"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listagem do formulário",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "qual_curso": {
+                      "type": "integer"
+                    },
+                    "nome_orientador": {
+                      "type": "string"
+                    },
+                    "link_curriculo": {
+                      "type": "string"
+                    },
+                    "data_latte": {
+                      "type": "string"
+                    },
+                    "ultimo_relatorio": {
+                      "type": "integer"
+                    },
+                    "ultimo_semestre": {
+                      "type": "integer"
+                    },
+                    "disciplinas_obrigatorias": {
+                      "type": "string"
+                    },
+                    "disciplinas_optativas": {
+                      "type": "string"
+                    },
+                    "conceitos_disciplinas": {
+                      "type": "integer"
+                    },
+                    "optativas_aprovadas": {
+                      "type": "string"
+                    },
+                    "congresso_exterior": {
+                      "type": "string"
+                    },
+                    "congresso_interior": {
+                      "type": "integer"
+                    },
+                    "estagio_pesquisa": {
+                      "type": "integer"
+                    },
+                    "disciplinas_reprovadas_mestrado": {
+                      "type": "integer"
+                    },
+                    "disciplinas_reprovadas_curso": {
+                      "type": "integer"
+                    },
+                    "exame_idiomas": {
+                      "type": "integer"
+                    },
+                    "exame_qualificacao": {
+                      "type": "integer"
+                    },
+                    "limite_qualificacao": {
+                      "type": "integer"
+                    },
+                    "artigos_aceitos": {
+                      "type": "integer"
+                    },
+                    "artigos_aguardando": {
+                      "type": "integer"
+                    },
+                    "artigos_preparacao": {
+                      "type": "integer"
+                    },
+                    "estagio_pesquisa_exterior": {
+                      "type": "string"
+                    },
+                    "declarar_ccp": {
+                      "type": "string"
+                    },
+                    "comentarios_orientando": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "ID não encontrado"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Formulário"],
+        "description": "Usado para excluir um formulário",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID da avaliação que será excluída"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exclusão da avaliação",
+            "responses": {
+              "200": {
+                "description": "Excluído com sucesso"
+              },
+              "400": {
+                "description": "ID inválido"
+              },
+              "404": {
+                "description": "ID não encontrado"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/student": {
+      "post": {
+        "tags": ["Estudante"],
+        "description": "Usado para criar um estudante",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "teacher_id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "usp_number": {
+                    "type": "string"
+                  },
+                  "lattes": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "teacher_id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "usp_number": {
+                      "type": "string"
+                    },
+                    "lattes": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos, preencha todos os campos!"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Estudante"],
+        "description": "Usado para listar todos os estudantes",
+        "responses": {
+          "200": {
+            "description": "Listados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "teacher_id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "usp_number": {
+                      "type": "string"
+                    },
+                    "lattes": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Estudante"],
+        "description": "Usado para editar um estudante",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "teacher_id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "usp_number": {
+                    "type": "string"
+                  },
+                  "lattes": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Editado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "teacher_id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "usp_number": {
+                      "type": "string"
+                    },
+                    "lattes": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/student/:id": {
+      "get": {
+        "tags": ["Estudante"],
+        "description": "Usado para listar um estudante",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID do estudante que será listado"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listagem do estudante",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "teacher_id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "usp_number": {
+                      "type": "string"
+                    },
+                    "lattes": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "ID não encontrado"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Estudante"],
+        "description": "Usado para excluir um estudante",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID do estudante que será excluído"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exclusão do estudante",
+            "responses": {
+              "200": {
+                "description": "Excluído com sucesso"
+              },
+              "400": {
+                "description": "ID inválido"
+              },
+              "404": {
+                "description": "ID não encontrado"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teacher": {
+      "post": {
+        "tags": ["Professor"],
+        "description": "Usado para criar um professor",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "student_id": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "student_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos, preencha todos os campos!"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Professor"],
+        "description": "Usado para listar todos os professores",
+        "responses": {
+          "200": {
+            "description": "Listados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "student_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Professor"],
+        "description": "Usado para editar um professor",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "student_id": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Editado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "student_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teacher/:id": {
+      "get": {
+        "tags": ["Professor"],
+        "description": "Usado para listar um professor",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID do professor que será listado"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listagem do professor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "student_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "ID não encontrado"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Professor"],
+        "description": "Usado para excluir um professor",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID do professor que será excluído"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exclusão do professor",
+            "responses": {
+              "200": {
+                "description": "Excluído com sucesso"
+              },
+              "400": {
+                "description": "ID inválido"
+              },
+              "404": {
+                "description": "ID não encontrado"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

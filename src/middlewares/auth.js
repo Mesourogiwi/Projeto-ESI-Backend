@@ -17,11 +17,14 @@ module.exports = (req, res, next) => {
     return res.status(401).json({ error: 'Token malformatted' })
 
   jwt.verify(token, authConfig.secret, (err, decoded) => {
-    if (err)
-      return res.status(401).json({ error: 'Token invalid' });
-
+    if (err){
+      console.log(err);
+      return res.status(401).json({ error: 'Token Invalid' });
+    }
+    
     req.id = decoded.id;
     req.level = decoded.level;
+    console.log(req.level);
     return next();
   })
 };

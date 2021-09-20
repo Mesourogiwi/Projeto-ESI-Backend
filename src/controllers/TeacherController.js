@@ -1,5 +1,4 @@
-const Teacher = require('../models/Teacher')
-const Student = require('../models/Student')
+const Teacher = require('../models/Teacher');
 
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
@@ -34,9 +33,10 @@ module.exports = {
         
                 return res.status(200).json(result);
             } catch (error) {
+                console.log(error);
                 return res.status(500).json({ msg: 'Validation fails' });
             }
-        } else return res.status(401).json({ msg: 'Token Invalid' });
+        } else return res.status(401).json({ msg: 'Token invalid' });
     },
     async store(req, res) {
         
@@ -50,6 +50,7 @@ module.exports = {
 
             return res.status(200).json({ result, token: generateToken({ id: result.id, level: 'teacher' }), result });
         } catch (error) {
+            console.log(error);
             return res.status(500).json({ msg: 'Validation fails' });
         }
     },
