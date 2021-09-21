@@ -19,7 +19,7 @@ routes.get('/forms/:id', auth, FormsController.indexById)
 routes.put('/forms', auth, FormsController.edit);
 routes.delete('/forms/:id', auth, FormsController.delete);
 
-routes.post('/student', StudentController.store);
+routes.post('/student', auth, StudentController.store);
 routes.get('/student', auth, StudentController.index);
 routes.get('/student/:id', auth, StudentController.indexById)
 routes.put('/student', auth, StudentController.edit);
@@ -37,10 +37,11 @@ routes.get('/ccp/:id', auth, CcpController.indexById)
 routes.put('/ccp', auth, CcpController.edit);
 routes.delete('/ccp/:id', auth, CcpController.delete);
 
-routes.post('/evaluation', EvaluationController.store);
+routes.post('/evaluation', auth, EvaluationController.store);
 routes.get('/evaluation', auth, EvaluationController.index);
 routes.get('/evaluation/:id', auth, EvaluationController.indexById)
 routes.put('/evaluation', auth, EvaluationController.edit);
+routes.put('/evaluation/send', auth, EvaluationController.evaluate);
 routes.delete('/evaluation/:id', auth, EvaluationController.delete);
 
 routes.post('/admin', AdminController.store);

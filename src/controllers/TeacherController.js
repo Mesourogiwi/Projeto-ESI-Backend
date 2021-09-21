@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
 const bcrypt = require('bcrypt');
 
+
 const { CCP_LEVEL, ADMIN_LEVEL, TEACHER_LEVEL } = require('../config/token');
 
 const generateToken = (params = {}) => jwt.sign(params, authConfig.secret, {
@@ -41,21 +42,23 @@ module.exports = {
         } else return res.status(401).json({ msg: 'Token invalid' });
     },
     async store(req, res) {
-        
-        const {name, email, password, ccp_id} = req.body;
+        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL) {
+            const {name, email, password, ccp_id} = req.body;
 
-        if (!name || !email || !password || !ccp_id)
-        return res.status(400).json({ msg: 'Input is invalid' });
+            if (!name || !email || !password || !ccp_id)
+            return res.status(400).json({ msg: 'Input is invalid' });
 
-        const hash = generateHash(password);
-        
-        try {
-            const result = await Teacher.create({name, email, password: hash, ccp_id});
-            result.password = undefined;
-            return res.status(200).json({ result, token: generateToken({ id: result.id, level: 'teacher' }), result });
-        } catch (error) {
-            return res.status(500).json({ msg: 'Validation fails' });
-        }
+            const hash = generateHash(password);
+            
+            try {
+                const result = await Teacher.create({name, email, password: hash, ccp_id});
+                result.password = undefined;
+                return res.status(200).json({ result, token: generateToken({ id: result.id, level: 'teacher' }), result });
+            } catch (error) {
+                console.log(error);
+                return res.status(500).json({ msg: 'Validation fails' });
+            }
+        } else return res.status(401).json({ msg: 'Token invalid' });
     },
     async edit(req, res) {
         if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL) {
