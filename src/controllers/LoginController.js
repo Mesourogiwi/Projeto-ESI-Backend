@@ -17,10 +17,10 @@ module.exports = {
   async login(req, res) {
     const { email, password } = req.body;
 
-    if (!email || email == null || email == undefined)
+    if (!email)
       return res.status(400).json({ msg: 'Email is invalid' });
 
-    if (!password || password == null || password == undefined)
+    if (!password)
       return res.status(400).json({ msg: 'Password is invalid' });
 
     try {

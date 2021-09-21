@@ -45,6 +45,7 @@ module.exports = {
         return res.status(200).json({ result, token: generateToken({ id: result.id, level: 'admin' }), result });
     
       } catch (error) {
+          console.log(error)
           return res.status(500).json({ msg: 'Validation fails' });
       }
     },
