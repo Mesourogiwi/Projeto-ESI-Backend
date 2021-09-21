@@ -14,7 +14,7 @@ class Evaluation extends Model {
       comentario_orientador: DataTypes.STRING,
       avaliacao_orientador: DataTypes.STRING,
       is_reavaliation: DataTypes.TINYINT,
-      students_id: DataTypes.INTEGER,
+      student_id: DataTypes.INTEGER,
     }, {
       sequelize: connection,
       tableName: "evaluation"

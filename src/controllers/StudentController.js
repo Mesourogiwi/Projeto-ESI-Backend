@@ -40,19 +40,21 @@ module.exports = {
         } else return res.status(401).json({ msg: 'Token Invalid' });
     },
     async store(req, res) {
-        const {name, email, password, usp_number, lattes, teacher_id} = req.body;
-        
-        if (!name || !email || !password || !usp_number || !lattes || !teacher_id)
-        return res.status(400).json({ msg: 'Input is invalid' });
+        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL) {    
+            const {name, email, password, usp_number, lattes, teacher_id} = req.body;
+            
+            if (!name || !email || !password || !usp_number || !lattes || !teacher_id)
+            return res.status(400).json({ msg: 'Input is invalid' });
 
-        try {
-            const hash = generateHash(password);
-            const result = await Student.create({name, email, password: hash, usp_number, lattes, teacher_id});
-            result.password = undefined;
-            return res.status(200).json({ result, token: generateToken({ id: result.id, level: 'student' }), result });
-        } catch (error) {
-            return res.status(500).json({ msg: 'Validation fails' });
-        }
+            try {
+                const hash = generateHash(password);
+                const result = await Student.create({name, email, password: hash, usp_number, lattes, teacher_id});
+                result.password = undefined;
+                return res.status(200).json({ result, token: generateToken({ id: result.id, level: 'student' }), result });
+            } catch (error) {
+                return res.status(500).json({ msg: 'Validation fails' });
+            }
+        } else return res.status(401).json({ msg: 'Token Invalid' });
     },
     async edit(req, res) {
         if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL || req.level === STUDENT_LEVEL) {

@@ -23,7 +23,6 @@ module.exports = {
       comentario_ccp: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       avaliacao_ccp: {
         type: Sequelize.STRING,
