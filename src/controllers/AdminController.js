@@ -2,9 +2,11 @@ const Admin = require('../models/Admin');
 
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
+const bcrypt = require('bcrypt');
 
 const { ADMIN_LEVEL } = require('../config/token');
 
+const generateHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 const generateToken = (params = {}) => jwt.sign(params, authConfig.secret, {
     expiresIn: 86400, //um dia
   });
@@ -36,12 +38,13 @@ module.exports = {
       return res.status(400).json({ msg: 'Input is invalid' });
 
       try {
-        
-          const result = await Admin.create({name, email, password});
-          return res.status(200).json({ result, token: generateToken({ id: result.id, level: 'admin' }), result });
-      
+        const hash = generateHash(password);
+
+        const result = await Admin.create({name, email, password: hash});
+        result.password = undefined;
+        return res.status(200).json({ result, token: generateToken({ id: result.id, level: 'admin' }), result });
+    
       } catch (error) {
-          console.log(error);
           return res.status(500).json({ msg: 'Validation fails' });
       }
     },
@@ -54,9 +57,11 @@ module.exports = {
           if (!result) {
             return res.status(404).json({ msg: 'Admin not found' });
           }
-            
-          const afterUpdate = await result.update({name, email, password, teacher_id});
-            return res.status(200).json(afterUpdate);
+          const hash = generateHash(password);
+
+          const afterUpdate = await result.update({name, email, password: hash, teacher_id});
+          afterUpdate.password = undefined;
+          return res.status(200).json(afterUpdate);
 
         } catch (error) {
             return res.status(500).json({ msg: 'Validation fails' });
