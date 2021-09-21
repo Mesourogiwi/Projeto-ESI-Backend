@@ -1,4 +1,6 @@
-require('dotenv').config();
+require('dotenv').config({
+  path: process.env.NODE_ENV ? process.env.NODE_ENV.trim() === "test" ? ".env.test" : ".env" : ".env"
+});
 
 module.exports = {
   dialect: 'mysql',
