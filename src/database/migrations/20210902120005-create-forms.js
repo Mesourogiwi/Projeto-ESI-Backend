@@ -9,10 +9,10 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-      evaluation_id: {
+      student_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'evaluation', key: 'id' },
+        references: { model: 'student', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
@@ -50,10 +50,6 @@ module.exports = {
       },
       conceitos_disciplinas: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      optativas_aprovadas: {
-        type: Sequelize.STRING,
         allowNull: false,
       },
       congresso_exterior: {

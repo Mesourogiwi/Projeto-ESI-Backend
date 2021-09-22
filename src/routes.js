@@ -41,7 +41,6 @@ routes.post('/evaluation', auth, EvaluationController.store);
 routes.get('/evaluation', auth, EvaluationController.index);
 routes.get('/evaluation/:id', auth, EvaluationController.indexById)
 routes.put('/evaluation', auth, EvaluationController.edit);
-routes.put('/evaluation/send', auth, EvaluationController.evaluate);
 routes.delete('/evaluation/:id', auth, EvaluationController.delete);
 
 routes.post('/admin', AdminController.store);
