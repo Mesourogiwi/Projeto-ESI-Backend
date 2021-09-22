@@ -17,7 +17,6 @@ class Forms extends Model {
       disciplinas_obrigatorias: DataTypes.STRING,
       disciplinas_optativas: DataTypes.STRING,
       conceitos_disciplinas: DataTypes.INTEGER,
-      optativas_aprovadas: DataTypes.STRING,
       congresso_exterior: DataTypes.STRING,
       congresso_interior:DataTypes.STRING,
       estagio_pesquisa: DataTypes.STRING,
@@ -32,14 +31,15 @@ class Forms extends Model {
       estagio_pesquisa_exterior: DataTypes.STRING,
       declarar_ccp: DataTypes.STRING,
       comentarios_orientando: DataTypes.STRING,
-      evaluation_id: DataTypes.INTEGER,
+      student_id: DataTypes.INTEGER,
     }, {
       sequelize: connection,
       tableName: "forms"
     })
   }
   static associate(models) {
-    this.belongsTo(models.Evaluation, { foreignKey: 'evaluationId', as: 'evaluation' });
+    this.belongsTo(models.Student, { foreignKey: 'studentId', as: 'student' });
+    this.hasMany(models.Evaluation, { foreignKey: 'formsId', as: 'evaluation' });
   }
 }
 

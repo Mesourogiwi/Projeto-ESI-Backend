@@ -14,15 +14,14 @@ class Evaluation extends Model {
       comentario_orientador: DataTypes.STRING,
       avaliacao_orientador: DataTypes.STRING,
       is_reavaliation: DataTypes.TINYINT,
-      student_id: DataTypes.INTEGER,
+      forms_id: DataTypes.INTEGER,
     }, {
       sequelize: connection,
       tableName: "evaluation"
     })
   }
   static associate(models) {
-    this.belongsTo(models.Student, { foreignKey: 'studentId', as: 'student' });
-    this.hasMany(models.Forms, { foreignKey: 'evaluationId', as: 'forms' });
+    this.belongsTo(models.Forms, { foreignKey: 'formsId', as: 'forms' });
   }
 }
 
