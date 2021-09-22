@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(routes);
 
 
-if(!process.env.NODE_ENV) app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+if(process.env.NODE_ENV !== "test") app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
