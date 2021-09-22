@@ -1,7 +1,10 @@
 {
   "name": "Projeto-ESI-Backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "engines": {
+    "node": "12.18.2"
+  },
+  "main": "src/server.js",
   "repository": "https://github.com/Mesourogiwi/Projeto-ESI-Backend.git",
   "author": "GSushi <gmarcieloliveira@gmail.com>",
   "license": "MIT",
