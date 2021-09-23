@@ -15,7 +15,7 @@ module.exports = {
     async index(req, res) {
         if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL) {
             const result = await Student.findAll({
-                include: [{ association: 'evaluation' }]
+                include: [{ association: 'forms' }]
                 });
 
             return res.json(result);
@@ -30,7 +30,7 @@ module.exports = {
 
             try {
                 const result = await Student.findByPk(id, {
-                    include: [{ association: 'evaluation' }]
+                    include: [{ association: 'forms' }]
                     });
         
                 return res.status(200).json(result);
@@ -83,7 +83,7 @@ module.exports = {
 
                 await result.destroy(result);
         
-                return res.status(200).json(); 
+                res.status(200).json({ msg: 'Student successfully deleted' });
             } catch (error) {
                 return res.status(500).json({ msg: 'Validation fails' });
             }

@@ -5,7 +5,9 @@ const { CCP_LEVEL, ADMIN_LEVEL, TEACHER_LEVEL, STUDENT_LEVEL } = require('../con
 module.exports = {
     async index(req, res) {
         if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL) {
-            const result = await Forms.findAll();
+            const result = await Forms.findAll({
+                include: [{ association: 'evaluation' }]
+                });
             return res.json(result);
         } else return res.status(401).json({ msg: 'Token Invalid' });
     },
@@ -16,7 +18,9 @@ module.exports = {
             if (!id)
             return res.status(400).json({ msg: 'Input is invalid' });
             try {
-                const result = await Forms.findByPk(id);
+                const result = await Forms.findByPk(id, {
+                    include: [{ association: 'evaluation' }]
+                    });
 
                 return res.status(200).json(result);
             } catch (error) {
@@ -117,7 +121,7 @@ module.exports = {
 
                 await result.destroy(result);
 
-                return res.status(200).json();
+                res.status(200).json({ msg: 'Forms successfully deleted' });
             } catch (error) {
                 return res.status(500).json({ msg: 'Validation fails' }); 
             }
