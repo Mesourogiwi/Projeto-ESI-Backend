@@ -82,7 +82,7 @@ module.exports = {
               return res.status(404).json({ msg: 'Admin not found' });
             }
 
-            await result.destroy(ccp);
+            await result.destroy(result);
               return res.status(200).json({ msg: 'Admin successfully deleted' });
 
           } catch (error) {
