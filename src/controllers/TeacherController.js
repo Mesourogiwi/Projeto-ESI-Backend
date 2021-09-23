@@ -5,7 +5,7 @@ const authConfig = require('../config/auth');
 const bcrypt = require('bcrypt');
 
 
-const { CCP_LEVEL, ADMIN_LEVEL, TEACHER_LEVEL } = require('../config/token');
+const { CCP_LEVEL, ADMIN_LEVEL, TEACHER_LEVEL, STUDENT_LEVEL } = require('../config/token');
 
 const generateToken = (params = {}) => jwt.sign(params, authConfig.secret, {
     expiresIn: 86400, //um dia
@@ -24,7 +24,7 @@ module.exports = {
         } else return res.status(401).json({ msg: 'Token Invalid' });
     },
     async indexById(req, res) {
-        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL) {
+        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL || req.level === STUDENT_LEVEL) {
             const {id} = req.params;
 
             if (!id)
