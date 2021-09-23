@@ -98,7 +98,7 @@ module.exports = {
 
                 await ccp.destroy(ccp);
 
-                res.status(200).json({ msg: 'CCP successfully deleted' });
+                return res.status(200).json({ msg: 'CCP successfully deleted' });
             } catch (error) {
                     return res.status(500).json({ msg: 'Validation fails' });
                 }
