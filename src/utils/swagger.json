@@ -8,12 +8,16 @@
       "name": "Gustavo Oliveira & Lucas Q. Honorato"
     }
   },
-  "apis": ["./src/server.js"],
+  "apis": [
+    "./src/server.js"
+  ],
   "basePath": "/",
   "paths": {
     "/admin": {
       "post": {
-        "tags": ["Administrador"],
+        "tags": [
+          "Administrador"
+        ],
         "description": "Usado para criar um administrador",
         "requestBody": {
           "description": "Corpo da requisição",
@@ -56,6 +60,15 @@
                     },
                     "password": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -71,7 +84,9 @@
         }
       },
       "get": {
-        "tags": ["Administrador"],
+        "tags": [
+          "Administrador"
+        ],
         "description": "Usado para listar todos os administradores",
         "responses": {
           "200": {
@@ -92,6 +107,15 @@
                     },
                     "password": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -101,7 +125,9 @@
         }
       },
       "put": {
-        "tags": ["Administrador"],
+        "tags": [
+          "Administrador"
+        ],
         "description": "Usado para editar um administrador",
         "requestBody": {
           "description": "Corpo da requisição",
@@ -147,6 +173,15 @@
                     },
                     "password": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -158,7 +193,9 @@
     },
     "/admin/:id": {
       "get": {
-        "tags": ["Administrador"],
+        "tags": [
+          "Administrador"
+        ],
         "description": "Usado para listar um administrador",
         "parameters": [
           {
@@ -190,6 +227,15 @@
                     },
                     "password": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -208,7 +254,9 @@
         }
       },
       "delete": {
-        "tags": ["Administrador"],
+        "tags": [
+          "Administrador"
+        ],
         "description": "Usado para excluir um administrador",
         "parameters": [
           {
@@ -244,7 +292,9 @@
     },
     "/ccp": {
       "post": {
-        "tags": ["CCP"],
+        "tags": [
+          "CCP"
+        ],
         "description": "Usado para criar um usuário CCP",
         "requestBody": {
           "description": "Corpo da requisição",
@@ -287,6 +337,15 @@
                     },
                     "password": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -302,7 +361,9 @@
         }
       },
       "get": {
-        "tags": ["CCP"],
+        "tags": [
+          "CCP"
+        ],
         "description": "Usado para listar todos os usuários CCP",
         "responses": {
           "200": {
@@ -323,6 +384,15 @@
                     },
                     "password": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -335,7 +405,9 @@
         }
       },
       "put": {
-        "tags": ["CCP"],
+        "tags": [
+          "CCP"
+        ],
         "description": "Usado para editar um usuário CCP",
         "requestBody": {
           "description": "Corpo da requisição",
@@ -381,6 +453,15 @@
                     },
                     "password": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -392,7 +473,9 @@
     },
     "/ccp/:id": {
       "get": {
-        "tags": ["CCP"],
+        "tags": [
+          "CCP"
+        ],
         "description": "Usado para listar um usuário CCP",
         "parameters": [
           {
@@ -424,6 +507,15 @@
                     },
                     "password": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -442,7 +534,9 @@
         }
       },
       "delete": {
-        "tags": ["CCP"],
+        "tags": [
+          "CCP"
+        ],
         "description": "Usado para excluir um usuário CCP",
         "parameters": [
           {
@@ -478,7 +572,9 @@
     },
     "/evaluation": {
       "post": {
-        "tags": ["Avaliação"],
+        "tags": [
+          "Avaliação"
+        ],
         "description": "Usado para criar uma nova avaliação",
         "requestBody": {
           "description": "Corpo da requisição",
@@ -488,7 +584,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "student_id": {
+                  "forms_id": {
                     "type": "integer"
                   },
                   "status": {
@@ -525,7 +621,7 @@
                     "id": {
                       "type": "integer"
                     },
-                    "student_id": {
+                    "forms_id": {
                       "type": "integer"
                     },
                     "status": {
@@ -560,7 +656,9 @@
         }
       },
       "get": {
-        "tags": ["Avaliação"],
+        "tags": [
+          "Avaliação"
+        ],
         "description": "Usado para listar todas avaliações",
         "responses": {
           "200": {
@@ -573,7 +671,7 @@
                     "id": {
                       "type": "integer"
                     },
-                    "student_id": {
+                    "forms_id": {
                       "type": "integer"
                     },
                     "status": {
@@ -605,7 +703,9 @@
         }
       },
       "put": {
-        "tags": ["Avaliação"],
+        "tags": [
+          "Avaliação"
+        ],
         "description": "Usado para editar uma avaliação",
         "requestBody": {
           "description": "Corpo da requisição",
@@ -618,7 +718,7 @@
                   "id": {
                     "type": "integer"
                   },
-                  "student_id": {
+                  "forms_id": {
                     "type": "integer"
                   },
                   "status": {
@@ -655,7 +755,7 @@
                     "id": {
                       "type": "integer"
                     },
-                    "student_id": {
+                    "forms_id": {
                       "type": "integer"
                     },
                     "status": {
@@ -686,7 +786,9 @@
     },
     "/evaluation/:id": {
       "get": {
-        "tags": ["Avaliação"],
+        "tags": [
+          "Avaliação"
+        ],
         "description": "Usado para listar uma avaliação",
         "parameters": [
           {
@@ -748,7 +850,9 @@
         }
       },
       "delete": {
-        "tags": ["Avaliação"],
+        "tags": [
+          "Avaliação"
+        ],
         "description": "Usado para excluir uma avaliação",
         "parameters": [
           {
@@ -784,7 +888,9 @@
     },
     "/forms": {
       "post": {
-        "tags": ["Formulário"],
+        "tags": [
+          "Formulário"
+        ],
         "description": "Usado para criar um novo formulário",
         "requestBody": {
           "description": "Corpo da requisição",
@@ -794,6 +900,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "student_id": {
+                    "type": "integer"
+                  },
                   "qual_curso": {
                     "type": "integer"
                   },
@@ -882,6 +991,9 @@
                     "id": {
                       "type": "integer"
                     },
+                    "student_id": {
+                      "type": "integer"
+                    },
                     "qual_curso": {
                       "type": "integer"
                     },
@@ -952,6 +1064,12 @@
                       "type": "string"
                     },
                     "comentarios_orientando": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
                       "type": "string"
                     }
                   }
@@ -968,7 +1086,9 @@
         }
       },
       "get": {
-        "tags": ["Formulário"],
+        "tags": [
+          "Formulário"
+        ],
         "description": "Usado para listar todos fomulários",
         "responses": {
           "200": {
@@ -979,6 +1099,9 @@
                   "type": "object",
                   "properties": {
                     "id": {
+                      "type": "integer"
+                    },
+                    "student_id": {
                       "type": "integer"
                     },
                     "qual_curso": {
@@ -1052,6 +1175,12 @@
                     },
                     "comentarios_orientando": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1064,7 +1193,9 @@
         }
       },
       "put": {
-        "tags": ["Formulário"],
+        "tags": [
+          "Formulário"
+        ],
         "description": "Usado para editar um formulário",
         "requestBody": {
           "description": "Corpo da requisição",
@@ -1075,6 +1206,9 @@
                 "type": "object",
                 "properties": {
                   "id": {
+                    "type": "integer"
+                  },
+                  "student_id": {
                     "type": "integer"
                   },
                   "qual_curso": {
@@ -1165,6 +1299,9 @@
                     "id": {
                       "type": "integer"
                     },
+                    "student_id": {
+                      "type": "integer"
+                    },
                     "qual_curso": {
                       "type": "integer"
                     },
@@ -1236,6 +1373,12 @@
                     },
                     "comentarios_orientando": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1247,7 +1390,9 @@
     },
     "/forms/:id": {
       "get": {
-        "tags": ["Formulário"],
+        "tags": [
+          "Formulário"
+        ],
         "description": "Usado para listar um formulário",
         "parameters": [
           {
@@ -1342,6 +1487,12 @@
                     },
                     "comentarios_orientando": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1360,7 +1511,9 @@
         }
       },
       "delete": {
-        "tags": ["Formulário"],
+        "tags": [
+          "Formulário"
+        ],
         "description": "Usado para excluir um formulário",
         "parameters": [
           {
@@ -1396,7 +1549,9 @@
     },
     "/student": {
       "post": {
-        "tags": ["Estudante"],
+        "tags": [
+          "Estudante"
+        ],
         "description": "Usado para criar um estudante",
         "requestBody": {
           "description": "Corpo da requisição",
@@ -1457,6 +1612,15 @@
                     },
                     "lattes": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1472,7 +1636,9 @@
         }
       },
       "get": {
-        "tags": ["Estudante"],
+        "tags": [
+          "Estudante"
+        ],
         "description": "Usado para listar todos os estudantes",
         "responses": {
           "200": {
@@ -1502,6 +1668,15 @@
                     },
                     "lattes": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1511,7 +1686,9 @@
         }
       },
       "put": {
-        "tags": ["Estudante"],
+        "tags": [
+          "Estudante"
+        ],
         "description": "Usado para editar um estudante",
         "requestBody": {
           "description": "Corpo da requisição",
@@ -1575,6 +1752,15 @@
                     },
                     "lattes": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1586,7 +1772,9 @@
     },
     "/student/:id": {
       "get": {
-        "tags": ["Estudante"],
+        "tags": [
+          "Estudante"
+        ],
         "description": "Usado para listar um estudante",
         "parameters": [
           {
@@ -1627,6 +1815,15 @@
                     },
                     "lattes": {
                       "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1645,7 +1842,9 @@
         }
       },
       "delete": {
-        "tags": ["Estudante"],
+        "tags": [
+          "Estudante"
+        ],
         "description": "Usado para excluir um estudante",
         "parameters": [
           {
@@ -1681,7 +1880,9 @@
     },
     "/teacher": {
       "post": {
-        "tags": ["Professor"],
+        "tags": [
+          "Professor"
+        ],
         "description": "Usado para criar um professor",
         "requestBody": {
           "description": "Corpo da requisição",
@@ -1730,6 +1931,15 @@
                     },
                     "student_id": {
                       "type": "integer"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1745,7 +1955,9 @@
         }
       },
       "get": {
-        "tags": ["Professor"],
+        "tags": [
+          "Professor"
+        ],
         "description": "Usado para listar todos os professores",
         "responses": {
           "200": {
@@ -1769,6 +1981,15 @@
                     },
                     "student_id": {
                       "type": "integer"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1778,7 +1999,9 @@
         }
       },
       "put": {
-        "tags": ["Professor"],
+        "tags": [
+          "Professor"
+        ],
         "description": "Usado para editar um professor",
         "requestBody": {
           "description": "Corpo da requisição",
@@ -1830,6 +2053,15 @@
                     },
                     "student_id": {
                       "type": "integer"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1841,7 +2073,9 @@
     },
     "/teacher/:id": {
       "get": {
-        "tags": ["Professor"],
+        "tags": [
+          "Professor"
+        ],
         "description": "Usado para listar um professor",
         "parameters": [
           {
@@ -1876,6 +2110,15 @@
                     },
                     "student_id": {
                       "type": "integer"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1894,7 +2137,9 @@
         }
       },
       "delete": {
-        "tags": ["Professor"],
+        "tags": [
+          "Professor"
+        ],
         "description": "Usado para excluir um professor",
         "parameters": [
           {
@@ -1924,6 +2169,71 @@
                 "description": "Internal Server Error"
               }
             }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "description": "Usado para logar",
+        "requestBody": {
+          "description": "Corpo da requisição",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos, preencha todos os campos!"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
