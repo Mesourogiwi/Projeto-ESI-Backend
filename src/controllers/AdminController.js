@@ -82,8 +82,8 @@ module.exports = {
               return res.status(404).json({ msg: 'Admin not found' });
             }
 
-            await result.destroy(ccp);
-              res.status(200).json({ msg: 'Admin successfully deleted' });
+            await result.destroy(result);
+              return res.status(200).json({ msg: 'Admin successfully deleted' });
 
           } catch (error) {
               return res.status(500).json({ msg: 'Validation fails' });

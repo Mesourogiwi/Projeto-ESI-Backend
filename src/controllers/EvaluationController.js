@@ -10,9 +10,7 @@ const { CCP_LEVEL, ADMIN_LEVEL, TEACHER_LEVEL, STUDENT_LEVEL } = require('../con
 module.exports = {
     async index (req, res) {
         if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL) {
-            const result = await Evaluation.findAll({
-                include: [{ association: 'forms' }]
-                });
+            const result = await Evaluation.findAll();
 
             return res.json(result);
         } else return res.status(401).json({ msg: 'Token Invalid' });
@@ -25,9 +23,7 @@ module.exports = {
             return res.status(400).json({ msg: 'ID is invalid' });
 
             try {
-                const result = await Evaluation.findByPk(id, {
-                    include: [{ association: 'forms' }]
-                    });
+                const result = await Evaluation.findByPk(id);
         
                 return res.status(200).json(result);
             } catch (error) {
@@ -36,7 +32,7 @@ module.exports = {
         } else return res.status(401).json({ msg: 'Token Invalid' });
     },
     async store(req, res) {
-        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL || req.level === STUDENT_LEVEL) {
+        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL ) {
             const {forms_id, status, comentario_ccp, avaliacao_ccp, comentario_orientador, avaliacao_orientador, is_reavaliation} = req.body;
 
             if (!forms_id || !status || !comentario_ccp || !avaliacao_ccp || !comentario_orientador || !avaliacao_orientador || !is_reavaliation)
@@ -108,7 +104,7 @@ module.exports = {
 
                 await result.destroy(result);
 
-                res.status(200).json({ msg: 'Evaluation successfully deleted' });
+                return res.status(200).json({ msg: 'Evaluation successfully deleted' });
 
             } catch (error) {
                 return res.status(500).json({ msg: 'Validation fails' });
