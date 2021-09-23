@@ -91,14 +91,14 @@ module.exports = {
             return res.status(400).json({ msg: 'CCP ID is invalid' });
 
             try {
-                const ccp = await CCP.findByPk(id);
-                if (!ccp) {
+                const result = await CCP.findByPk(id);
+                if (!result) {
                     return res.status(404).json({ msg: 'CCP not found' });
                 }
 
-                await ccp.destroy(ccp);
+                await result.destroy(result);
 
-                res.status(200).json({ msg: 'CCP successfully deleted' });
+                return res.status(200).json({ msg: 'CCP successfully deleted' });
             } catch (error) {
                     return res.status(500).json({ msg: 'Validation fails' });
                 }

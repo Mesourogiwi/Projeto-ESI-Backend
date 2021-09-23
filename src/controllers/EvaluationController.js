@@ -32,7 +32,7 @@ module.exports = {
         } else return res.status(401).json({ msg: 'Token Invalid' });
     },
     async store(req, res) {
-        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL || req.level === STUDENT_LEVEL) {
+        if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL || req.level === TEACHER_LEVEL ) {
             const {forms_id, status, comentario_ccp, avaliacao_ccp, comentario_orientador, avaliacao_orientador, is_reavaliation} = req.body;
 
             if (!forms_id || !status || !comentario_ccp || !avaliacao_ccp || !comentario_orientador || !avaliacao_orientador || !is_reavaliation)
@@ -104,7 +104,7 @@ module.exports = {
 
                 await result.destroy(result);
 
-                res.status(200).json({ msg: 'Evaluation successfully deleted' });
+                return res.status(200).json({ msg: 'Evaluation successfully deleted' });
 
             } catch (error) {
                 return res.status(500).json({ msg: 'Validation fails' });

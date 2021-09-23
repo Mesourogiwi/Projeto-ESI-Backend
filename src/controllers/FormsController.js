@@ -121,7 +121,7 @@ module.exports = {
 
                 await result.destroy(result);
 
-                res.status(200).json({ msg: 'Forms successfully deleted' });
+                return res.status(200).json({ msg: 'Forms successfully deleted' });
             } catch (error) {
                 return res.status(500).json({ msg: 'Validation fails' }); 
             }
