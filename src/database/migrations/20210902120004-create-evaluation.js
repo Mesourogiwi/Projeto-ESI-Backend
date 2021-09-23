@@ -12,7 +12,7 @@ module.exports = {
       forms_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'student', key: 'id' },
+        references: { model: 'forms', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
