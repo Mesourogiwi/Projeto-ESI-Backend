@@ -45,7 +45,7 @@ describe('Authentication', () => {
         const response = await request(app)
         .post('/login')
         .send({
-            email: 'lucasquintas@hotmail.com',
+            email: 'luskansado@hotmail.com',
             password: '12345678'
         })
 

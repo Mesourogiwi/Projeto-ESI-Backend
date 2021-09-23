@@ -1,8 +1,8 @@
-const request = require('supertest')
+const request = require('supertest');
 
 const app = require('../../src/server');
 
-describe('Authentication', () => {
+describe('Admin', () => {
     it('should create a new administrator', async () => {
         const response = await request(app)
         .post('/admin')
@@ -61,5 +61,93 @@ describe('Authentication', () => {
 
         expect(response.status).toBe(200)
 
+    })
+    it('should be able to edit one admin', async () => {
+        const loginAdmin = await request(app)
+        .post('/login')
+        .send({
+            email: 'lucasquintas@hotmail.com',
+            password: '123456'
+        })
+
+        const response = await request(app)
+        .put('/admin')
+        .send({
+            id: '3',
+            name: 'admin_editado',
+            email: 'admin_editado@teste.com',
+            password: '654321'
+        })
+        .set('Authorization', `Bearer ${loginAdmin.body.token}`)
+
+        expect(response.status).toBe(200)
+    })
+    it('should not find an admin to edit', async () => {
+        const loginAdmin = await request(app)
+        .post('/login')
+        .send({
+            email: 'lucasquintas@hotmail.com',
+            password: '123456'
+        })
+
+        const response = await request(app)
+        .put('/admin')
+        .send({
+            id: '400',
+            name: 'admin_editado',
+            email: 'admin_editado@teste.com',
+            password: '654321'
+        })
+        .set('Authorization', `Bearer ${loginAdmin.body.token}`)
+
+        expect(response.status).toBe(404)
+    })
+    it('should not be able to edit an admin', async () => {
+        const response = await request(app)
+        .put('/admin')
+        .send({
+            id: '400',
+            name: 'admin_editado',
+            email: 'admin_editado@teste.com',
+            password: '654321'
+        })
+        .set('Authorization', `Bearer 123123`)
+
+        expect(response.status).toBe(401)
+    })
+    it('should be able to delete an admin', async () => {
+        const loginAdmin = await request(app)
+        .post('/login')
+        .send({
+            email: 'lucasquintas@hotmail.com',
+            password: '123456'
+        })
+
+        const response = await request(app)
+        .delete('/admin/3')
+        .set('Authorization', `Bearer ${loginAdmin.body.token}`)
+
+        expect(response.status).toBe(200)
+    })
+    it('should not find an admin to delete', async () => {
+        const loginAdmin = await request(app)
+        .post('/login')
+        .send({
+            email: 'lucasquintas@hotmail.com',
+            password: '123456'
+        })
+
+        const response = await request(app)
+        .delete('/admin/200')
+        .set('Authorization', `Bearer ${loginAdmin.body.token}`)
+
+        expect(response.status).toBe(404)
+    })
+    it('should not be able to delete an admin', async () => {
+        const response = await request(app)
+        .delete('/admin/1')
+        .set('Authorization', `Bearer 123123`)
+
+        expect(response.status).toBe(401)
     })
 })

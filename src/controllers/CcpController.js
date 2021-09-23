@@ -29,7 +29,7 @@ module.exports = {
         if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL) {    
             const {id} = req.params;
 
-            if (!id || id == null || id == undefined)
+            if (!id)
             return res.status(400).json({ msg: 'CCP ID is invalid' });
 
             try{
@@ -87,7 +87,7 @@ module.exports = {
         if (req.level === ADMIN_LEVEL || req.level === CCP_LEVEL ) {  
             const {id} = req.params;
 
-            if (!id || id == null || id == undefined)
+            if (!id)
             return res.status(400).json({ msg: 'CCP ID is invalid' });
 
             try {
