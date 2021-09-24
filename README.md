@@ -14,7 +14,7 @@
 ## How to run the project
 Firstly you need to have node.js on your local machine. You can dowload it in the link below (We highly recommend to download the LTS version):
 
-![Node.js](https://nodejs.org/en/)
+[Node.js](https://nodejs.org/en/)
 
 After this, you'll have a package manager for javascript (npm), but we recommend you to download yarn, another package manager that is faster and more optimized.
 
