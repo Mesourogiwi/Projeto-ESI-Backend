@@ -39,10 +39,10 @@ This will set a local server that you can access typing localhost:3333 on your b
 
 If you want to run the tests, you need to add a .env.test file with these variables:
 
-DB_HOST=localhost
-DB_USERNAME=root
-DB_PASSWORD=root
-DB_DATABASE=projeto_es1_test
+- DB_HOST=localhost
+- DB_USERNAME=root
+- DB_PASSWORD=root
+- DB_DATABASE=projeto_es1_test
 
 Which you can replace with values of a local database if you want.
 
