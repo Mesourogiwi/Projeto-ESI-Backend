@@ -21,7 +21,7 @@ After this, you'll have a package manager for javascript (npm), but we recommend
 You can install running the command
 ```npm install -g yarn```
 
-Then you need to add a .env file to your project, with this variables:
+Then you need to add a .env file to your project, on root folder, with this variables:
 - DB_HOST=yourdbhost
 - DB_USERNAME=yourdbusername
 - DB_PASSWORD=yourdbpassword 
@@ -37,7 +37,7 @@ Finally, you run
 
 This will set a local server that you can access typing localhost:3333 on your browser. If you need to read the documentation, you can access localhost:3333/api-docs OR you can see it deployed on the [Website](https://projetoes1.herokuapp.com/api-docs/)
 
-If you want to run the tests, you need to add a .env.test file with these variables:
+If you want to run the tests, you need to add a .env.test file on root folder of the project with these variables:
 
 - DB_HOST=localhost
 - DB_USERNAME=root
@@ -50,7 +50,7 @@ Then, run
 ```yarn test```
 
 ## About the project and technologies
-As mentioned above on technologies, we used the Javascript language in addition of Node.js with Express with MySQL to run a server on our local machine and the deployed version. We used Insomnia (an program similiar to postman) to simulate request to our backend, that we could test and document. In the link below you can see an example of Insomnia
+As mentioned above on technologies, we used the Javascript language in addition of Node.js with Express with MySQL to run a server on our local machine and the deployed version. We used Insomnia (a program similiar to postman) to simulate request to our backend, that we could test and document. In the link below you can see an example of Insomnia
 
 [Insomnia](https://prnt.sc/1techhc)
 
